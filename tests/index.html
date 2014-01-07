@@ -5,42 +5,7 @@
   <title>Document</title>
   <script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
   <script type="text/javascript" src="../src/jquery.sticker.js"></script>
-  <style type="text/css">
-  .header {
-    background-color: yellow;
-    border: 5px solid gray;
-    margin: 5px;
-    padding: 5px;
-  }
-  .absolute {
-    position: absolute;
-    width: 200px;
-    height: 200px;
-    top: 100px;
-    right: 100px;
-    z-index: 10;
-    border: 5px solid gray;
-    margin: 5px;
-    padding: 5px;
-    background-color: green;
-  }
-  .float-wrap {
-    overflow: auto;
-    border: 5px solid gray;
-  }
-  .float {
-    float: left;
-    width: 200px;
-    height: 200px;
-
-    border: 5px solid gray;
-    margin: 5px;
-    padding: 5px;
-    background-color: blue;
-  }
-  </style>
-  <script>
-  </script>
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
   <div class="absolute">
@@ -48,13 +13,13 @@
     <p>This is content</p>
     <p>This is content</p>
   </div>
-  <div>
+  <div class="wrap">
     <div class="header">This is header This is header This is header This is header This is header This is header This is header This is header This is header This is header This is header This is header This is header This is header This is header This is header This is header This is header This is header This is header This is header This is header</div>
     <p>This is content This is content This is content This is content This is content This is content</p>
     <p>This is content</p>
     <p>This is content</p>
   </div>
-  <div>
+  <div class="wrap">
     <div class="header">This is header</div>
     <p>This is content</p>
     <p>This is content</p>
@@ -65,61 +30,55 @@
     <div class="float">Float</div>
     <div class="float">Float</div>
   </div>
-  <div>
+  <div class="wrap">
+    <div class="style" style="background-color: yellow;border: 25px solid gray;margin: 20px;padding: 15px;width:80%">This is style header</div>
+    <p>This is content</p>
+    <p>This is content</p>
+    <p>This is content</p>
+  </div>
+  <div class="relative">
+    <div style="position:absolute;left: 10px" class="header">
+      Absolute in relative
+    </div>
+  </div>
+  <div class="wrap">
     <div class="header">This is header</div>
     <p>This is content</p>
     <p>This is content</p>
     <p>This is content</p>
   </div>
-  <div>
+  <div class="wrap">
     <div class="header">This is header</div>
     <p>This is content</p>
     <p>This is content</p>
     <p>This is content</p>
   </div>
-  <div>
+  <div class="wrap">
     <div class="header">This is header</div>
     <p>This is content</p>
     <p>This is content</p>
     <p>This is content</p>
   </div>
-  <div>
+  <div class="wrap">
     <div class="header">This is header</div>
     <p>This is content</p>
     <p>This is content</p>
     <p>This is content</p>
   </div>
-  <div>
+  <div class="wrap">
     <div class="header">This is header</div>
     <p>This is content</p>
     <p>This is content</p>
     <p>This is content</p>
   </div>
-  <div>
-    <div class="header">This is header</div>
-    <p>This is content</p>
-    <p>This is content</p>
-    <p>This is content</p>
-  </div>
-  <div>
-    <div class="header">This is header</div>
-    <p>This is content</p>
-    <p>This is content</p>
-    <p>This is content</p>
-  </div>
-  <div>
+  <div class="wrap">
     <div class="header">This is header</div>
     <p>This is content</p>
     <p>This is content</p>
     <p>This is content</p>
   </div>
   <script>
-  $('.header,.absolute,.sticky').stick({
-    scope: 'parent'
-  });
-  // $('.absolute').stick({
-  //   scope: 'parent'
-  // });
+  $('.header,.style,.absolute,.sticky').stick();
   </script>
 </body>
 </html>
