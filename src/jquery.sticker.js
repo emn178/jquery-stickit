@@ -1,12 +1,21 @@
 ;(function($, window, document, undefined) {
+  var Scope = {
+    Document: 0,
+    Parent: 1
+  };
+
   var Stick = {
     None: 0,
     Fixed: 1,
     Absolute: 2
   };
 
-  function Sticker(element)
+  window.StickerScope = Scope;
+
+  function Sticker(element, options)
   {
+    this.options = options || {};
+    this.options.scope = this.options.scope || Scope.Document;
     this.element = $(element);
     this.stick = Stick.None;
     this.spacer = $('<div />');
@@ -87,14 +96,12 @@
         var top = rect.top - this.margin.top;
         if(top >= 0)
           this.reset();
-        else
+        else if(this.options.scope == Scope.Parent)
         {
           // check parent
           rect = element.parent()[0].getBoundingClientRect();
           if(rect.bottom - parseInt(element.parent().css('border-bottom-width')) <= element.outerHeight() + this.margin.top + this.margin.bottom)
-          {
             this.setAbsolute();
-          }
         }
         break;
       case Stick.Absolute:
@@ -117,14 +124,18 @@
         if(top >= 0)
           return;
 
-        var rect2 = element.parent()[0].getBoundingClientRect();
-        if(rect2.bottom - parseInt(element.parent().css('border-bottom-width')) <= element.outerHeight() + this.margin.top + this.margin.bottom)
-          this.setAbsolute();
+        var left = rect.left - this.margin.left;
+        if(this.options.scope == Scope.Document)
+          this.setFixed(left);
         else
         {
-          var left = rect.left - this.margin.left;
-          this.setFixed(left);
+          var rect2 = element.parent()[0].getBoundingClientRect();
+          if(rect2.bottom - parseInt(element.parent().css('border-bottom-width')) <= element.outerHeight() + this.margin.top + this.margin.bottom)
+            this.setAbsolute();
+          else
+            this.setFixed(left);
         }
+        
         spacer.height(element.height());
         spacer.show();
         if(!spacer.width())
@@ -163,9 +174,9 @@
     locate();
   }
 
-  $.fn.stick = function() {
+  $.fn.stick = function(options) {
     this.each(function() {
-      var sticker = new Sticker(this);
+      var sticker = new Sticker(this, options);
       stickers.push(sticker);
       sticker.locate();
     });
