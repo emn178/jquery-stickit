@@ -2,8 +2,8 @@
 This is a jQuery plugin provides a sticky header, sidebar or else when scrolling.
 
 ## Demo
-[Sidebar](http://emn178.github.io/jquery-jsticker/sidebar/)  
-[Header](http://emn178.github.io/jquery-jsticker/header/)
+[Sidebar](http://emn178.github.io/jquery-jsticker/demo/sidebar/)  
+[Header](http://emn178.github.io/jquery-jsticker/demo/header/)
 
 ## Browser Support
 jQuery-jSticker currently supports IE8+, Chrome, Firefox, Safari and Opera.
