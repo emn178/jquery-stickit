@@ -1,17 +1,17 @@
-# jQuery-jSticker
+# jQuery-stickit
 This is a jQuery plugin provides a sticky header, sidebar or else when scrolling.
 
 ## Demo
-[Sidebar](http://emn178.github.io/jquery-jsticker/demo/sidebar/)  
-[Header](http://emn178.github.io/jquery-jsticker/demo/header/)  
-[Navbar](http://emn178.github.io/jquery-jsticker/demo/navbar/)
+[Sidebar](http://emn178.github.io/jquery-stickit/demo/sidebar/)  
+[Header](http://emn178.github.io/jquery-stickit/demo/header/)  
+[Navbar](http://emn178.github.io/jquery-stickit/demo/navbar/)
 
 ## Browser Support
-jQuery-jSticker currently supports IE8+, Chrome, Firefox, Safari and Opera.
+jQuery-stickit currently supports IE8+, Chrome, Firefox, Safari and Opera.
 
 ## Usage
 ```JavaScript
-$('#you-want-stick').stick(options);
+$('#you-want-stick').stickit(options);
 ```
 
 ### Options
@@ -26,14 +26,14 @@ Sets the element stick in the parent element or entire document.
 ## Example
 Code
 ```JavaScript
-$('#sidebar').stick(); // default StickScope.Parent
-$('#header').stick({scope: StickScope.Parent});
-$('#navbar').stick({scope: StickScope.Document});
+$('#sidebar').stickit(); // default StickScope.Parent
+$('#header').stickit({scope: StickScope.Parent});
+$('#navbar').stickit({scope: StickScope.Document});
 ```
 
 ## License
 The project is released under the [MIT license](http://www.opensource.org/licenses/MIT).
 
 ## Contact
-The project's website is located at https://github.com/emn178/jquery-jsticker  
+The project's website is located at https://github.com/emn178/jquery-stickit  
 Author: emn178@gmail.com

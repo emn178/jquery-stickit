@@ -1,6 +1,6 @@
 /*
- * jQuery-jSticker v0.1.0
- * https://github.com/emn178/jquery-jsticker
+ * jQuery-stickit v0.1.0
+ * https://github.com/emn178/jquery-stickit
  *
  * Copyright 2014, emn178@gmail.com
  *
@@ -31,7 +31,7 @@
     this.spacer[0].id = element.id;
     this.spacer[0].className = element.className;
     this.spacer[0].style.cssText = element.style.cssText;
-    this.spacer.addClass('sticker-spacer');
+    this.spacer.addClass('stickit-spacer');
     this.spacer.css({
       display: 'none',
       visibility: 'hidden'
@@ -190,7 +190,7 @@
     locate();
   }
 
-  $.fn.stick = function(options) {
+  $.fn.stickit = function(options) {
     this.each(function() {
       var sticker = new Sticker(this, options);
       stickers.push(sticker);
