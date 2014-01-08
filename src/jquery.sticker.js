@@ -19,8 +19,10 @@
     this.element = $(element);
     this.stick = Stick.None;
     this.spacer = $('<div />');
+    this.spacer[0].id = element.id;
     this.spacer[0].className = element.className;
     this.spacer[0].style.cssText = element.style.cssText;
+    this.spacer.addClass('sticker-spacer');
     this.spacer.css({
       display: 'none',
       visibility: 'hidden'
@@ -50,10 +52,15 @@
   Sticker.prototype.bound = function() {
     var element = this.element;
     this.margin = {
-      top: parseInt(element.css('margin-top')),
-      bottom: parseInt(element.css('margin-bottom')),
-      left: parseInt(element.css('margin-left')),
-      right: parseInt(element.css('margin-right'))
+      top: parseInt(element.css('margin-top')) || 0,
+      bottom: parseInt(element.css('margin-bottom')) || 0,
+      left: parseInt(element.css('margin-left')) || 0,
+      right: parseInt(element.css('margin-right')) || 0
+    };
+    this.parent = {
+      border: {
+        bottom: parseInt(element.parent().css('border-bottom-width')) || 0
+      }
     };
   };
 
@@ -100,7 +107,7 @@
         {
           // check parent
           rect = element.parent()[0].getBoundingClientRect();
-          if(rect.bottom - parseInt(element.parent().css('border-bottom-width')) <= element.outerHeight() + this.margin.top + this.margin.bottom)
+          if(rect.bottom - this.parent.border.bottom <= element.outerHeight() + this.margin.top + this.margin.bottom)
             this.setAbsolute();
         }
         break;
@@ -113,7 +120,7 @@
         else
         {
           rect = element.parent()[0].getBoundingClientRect();
-          if(rect.bottom - parseInt(element.parent().css('border-bottom-width')) > element.outerHeight() + this.margin.top + this.margin.bottom)
+          if(rect.bottom - this.parent.border.bottom > element.outerHeight() + this.margin.top + this.margin.bottom)
             this.setFixed(left);
         }
         break;
@@ -130,7 +137,7 @@
         else
         {
           var rect2 = element.parent()[0].getBoundingClientRect();
-          if(rect2.bottom - parseInt(element.parent().css('border-bottom-width')) <= element.outerHeight() + this.margin.top + this.margin.bottom)
+          if(rect2.bottom - this.parent.border.bottom <= element.outerHeight() + this.margin.top + this.margin.bottom)
             this.setAbsolute();
           else
             this.setFixed(left);
