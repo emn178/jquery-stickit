@@ -1,7 +1,16 @@
+/*
+ * jQuery-jSticker v0.1.0
+ * https://github.com/emn178/jquery-jsticker
+ *
+ * Copyright 2014, emn178@gmail.com
+ *
+ * Licensed under the MIT license:
+ * http://www.opensource.org/licenses/MIT
+ */
 ;(function($, window, document, undefined) {
   var Scope = {
-    Document: 0,
-    Parent: 1
+    Parent: 0,
+    Document: 1
   };
 
   var Stick = {
@@ -10,12 +19,12 @@
     Absolute: 2
   };
 
-  window.StickerScope = Scope;
+  window.StickScope = Scope;
 
   function Sticker(element, options)
   {
     this.options = options || {};
-    this.options.scope = this.options.scope || Scope.Document;
+    this.options.scope = this.options.scope || Scope.Parent;
     this.element = $(element);
     this.stick = Stick.None;
     this.spacer = $('<div />');
