@@ -4,11 +4,11 @@
   <head>
     <meta charset='utf-8' />
     <meta http-equiv="X-UA-Compatible" content="chrome=1" />
-    <meta name="description" content="Jquery-jsticker : A jQuery plugin provides a sticky header, sidebar or else when scrolling." />
+    <meta name="description" content="jQuery-jSticker : A jQuery plugin provides a sticky header, sidebar or else when scrolling." />
 
     <link rel="stylesheet" type="text/css" media="screen" href="stylesheets/stylesheet.css">
 
-    <title>Jquery-jsticker</title>
+    <title>jQuery-jSticker</title>
   </head>
 
   <body>
@@ -18,7 +18,7 @@
         <header class="inner">
           <a id="forkme_banner" href="https://github.com/emn178/jquery-jsticker">View on GitHub</a>
 
-          <h1 id="project_title">Jquery-jsticker</h1>
+          <h1 id="project_title">jQuery-jSticker</h1>
           <h2 id="project_tagline">A jQuery plugin provides a sticky header, sidebar or else when scrolling.</h2>
 
             <section id="downloads">
@@ -31,44 +31,67 @@
     <!-- MAIN CONTENT -->
     <div id="main_content_wrap" class="outer">
       <section id="main_content" class="inner">
-        <h3>
-<a name="welcome-to-github-pages" class="anchor" href="#welcome-to-github-pages"><span class="octicon octicon-link"></span></a>Welcome to GitHub Pages.</h3>
+        <h1>
+<a name="jquery-jsticker" class="anchor" href="#jquery-jsticker"><span class="octicon octicon-link"></span></a>jQuery-jSticker</h1>
 
-<p>This automatic page generator is the easiest way to create beautiful pages for all of your projects. Author your page content here using GitHub Flavored Markdown, select a template crafted by a designer, and publish. After your page is generated, you can check out the new branch:</p>
+<p>This is a jQuery plugin provides a sticky header, sidebar or else when scrolling.</p>
 
-<pre><code>$ cd your_repo_root/repo_name
-$ git fetch origin
-$ git checkout gh-pages
-</code></pre>
+<h2>
+<a name="demo" class="anchor" href="#demo"><span class="octicon octicon-link"></span></a>Demo</h2>
 
-<p>If you're using the GitHub for Mac, simply sync your repository and you'll see the new branch.</p>
+<p><a href="http://emn178.github.io/jquery-jsticker/sidebar/">Sidebar</a><br><a href="http://emn178.github.io/jquery-jsticker/header/">Header</a></p>
 
-<h3>
-<a name="designer-templates" class="anchor" href="#designer-templates"><span class="octicon octicon-link"></span></a>Designer Templates</h3>
+<h2>
+<a name="browser-support" class="anchor" href="#browser-support"><span class="octicon octicon-link"></span></a>Browser Support</h2>
 
-<p>We've crafted some handsome templates for you to use. Go ahead and continue to layouts to browse through them. You can easily go back to edit your page before publishing. After publishing your page, you can revisit the page generator and switch to another theme. Your Page content will be preserved if it remained markdown format.</p>
+<p>jQuery-jSticker currently supports IE8+, Chrome, Firefox, Safari and Opera.</p>
 
-<h3>
-<a name="rather-drive-stick" class="anchor" href="#rather-drive-stick"><span class="octicon octicon-link"></span></a>Rather Drive Stick?</h3>
+<h2>
+<a name="usage" class="anchor" href="#usage"><span class="octicon octicon-link"></span></a>Usage</h2>
 
-<p>If you prefer to not use the automatic generator, push a branch named <code>gh-pages</code> to your repository to create a page manually. In addition to supporting regular HTML content, GitHub Pages support Jekyll, a simple, blog aware static site generator written by our own Tom Preston-Werner. Jekyll makes it easy to create site-wide headers and footers without having to copy them across every page. It also offers intelligent blog support and other advanced templating features.</p>
-
-<h3>
-<a name="authors-and-contributors" class="anchor" href="#authors-and-contributors"><span class="octicon octicon-link"></span></a>Authors and Contributors</h3>
-
-<p>You can <a href="https://github.com/blog/821" class="user-mention">@mention</a> a GitHub username to generate a link to their profile. The resulting <code>&lt;a&gt;</code> element will link to the contributor's GitHub Profile. For example: In 2007, Chris Wanstrath (<a href="https://github.com/defunkt" class="user-mention">@defunkt</a>), PJ Hyett (<a href="https://github.com/pjhyett" class="user-mention">@pjhyett</a>), and Tom Preston-Werner (<a href="https://github.com/mojombo" class="user-mention">@mojombo</a>) founded GitHub.</p>
+<div class="highlight highlight-JavaScript"><pre><span class="nx">$</span><span class="p">(</span><span class="s1">'#you-want-stick'</span><span class="p">).</span><span class="nx">stick</span><span class="p">(</span><span class="nx">options</span><span class="p">);</span>
+</pre></div>
 
 <h3>
-<a name="support-or-contact" class="anchor" href="#support-or-contact"><span class="octicon octicon-link"></span></a>Support or Contact</h3>
+<a name="options" class="anchor" href="#options"><span class="octicon octicon-link"></span></a>Options</h3>
 
-<p>Having trouble with Pages? Check out the documentation at <a href="http://help.github.com/pages">http://help.github.com/pages</a> or contact <a href="mailto:support@github.com">support@github.com</a> and we’ll help you sort it out.</p>
+<h4>
+<a name="scope-stickscope-default-stickscopeparent" class="anchor" href="#scope-stickscope-default-stickscopeparent"><span class="octicon octicon-link"></span></a><em>scope: StickScope (default: <code>StickScope.Parent</code>)</em>
+</h4>
+
+<p>Sets the element stick in the parent element or entire document.</p>
+
+<p><em><code>StickScope.Parent</code></em>: Sets the element stick in the parent element.</p>
+
+<p><em><code>StickScope.Document</code></em>: Sets the element stick in the entire document.</p>
+
+<h2>
+<a name="example" class="anchor" href="#example"><span class="octicon octicon-link"></span></a>Example</h2>
+
+<p>Code</p>
+
+<div class="highlight highlight-JavaScript"><pre><span class="nx">$</span><span class="p">(</span><span class="s1">'#sidebar'</span><span class="p">).</span><span class="nx">stick</span><span class="p">();</span> <span class="c1">// default StickScope.Parent</span>
+<span class="nx">$</span><span class="p">(</span><span class="s1">'#header'</span><span class="p">).</span><span class="nx">stick</span><span class="p">({</span><span class="nx">scope</span><span class="o">:</span> <span class="nx">StickScope</span><span class="p">.</span><span class="nx">Parent</span><span class="p">});</span>
+<span class="nx">$</span><span class="p">(</span><span class="s1">'#navbar'</span><span class="p">).</span><span class="nx">stick</span><span class="p">({</span><span class="nx">scope</span><span class="o">:</span> <span class="nx">StickScope</span><span class="p">.</span><span class="nx">Document</span><span class="p">});</span>
+</pre></div>
+
+<h2>
+<a name="license" class="anchor" href="#license"><span class="octicon octicon-link"></span></a>License</h2>
+
+<p>The project is released under the <a href="http://www.opensource.org/licenses/MIT">MIT license</a>.</p>
+
+<h2>
+<a name="contact" class="anchor" href="#contact"><span class="octicon octicon-link"></span></a>Contact</h2>
+
+<p>The project's website is located at <a href="https://github.com/emn178/jquery-jsticker">https://github.com/emn178/jquery-jsticker</a><br>
+Author: <a href="mailto:emn178@gmail.com">emn178@gmail.com</a></p>
       </section>
     </div>
 
     <!-- FOOTER  -->
     <div id="footer_wrap" class="outer">
       <footer class="inner">
-        <p class="copyright">Jquery-jsticker maintained by <a href="https://github.com/emn178">emn178</a></p>
+        <p class="copyright">jQuery-jSticker maintained by <a href="https://github.com/emn178">emn178</a></p>
         <p>Published with <a href="http://pages.github.com">GitHub Pages</a></p>
       </footer>
     </div>
