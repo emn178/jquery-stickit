@@ -1,5 +1,5 @@
 /*
- * jQuery-stickit v0.1.0
+ * jQuery-stickit v0.1.1
  * https://github.com/emn178/jquery-stickit
  *
  * Copyright 2014, emn178@gmail.com
@@ -25,6 +25,7 @@
   {
     this.options = options || {};
     this.options.scope = this.options.scope || Scope.Parent;
+    this.options.className = this.options.className || 'stick';
     this.element = $(element);
     this.stick = Stick.None;
     this.spacer = $('<div />');
@@ -78,9 +79,12 @@
     this.spacer.hide();
     this.spacer.css('width', '');
     this.restore();
+    this.element.removeClass('stick');
   };
 
   Sticker.prototype.setAbsolute = function() {
+    if(this.stick == Stick.None)
+      this.element.addClass('stick');
     this.stick = Stick.Absolute;
     this.element.css({
       'width': this.element.width() + 'px',
@@ -92,6 +96,8 @@
   };
 
   Sticker.prototype.setFixed = function(left) {
+    if(this.stick == Stick.None)
+      this.element.addClass('stick');
     this.stick = Stick.Fixed;
     this.element.css({
       'width': this.element.width() + 'px',
