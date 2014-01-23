@@ -51,7 +51,8 @@
       position: element.style.position,
       left: element.style.left,
       top: element.style.top,
-      bottom: element.style.bottom
+      bottom: element.style.bottom,
+      zIndex: element.style.zIndex
     };
   };
 
@@ -91,7 +92,8 @@
       'position': 'absolute',
       'top': this.origStyle.top,
       'left': this.origStyle.left,
-      'bottom': '0'
+      'bottom': '0',
+      'z-index': '100'
     });
   };
 
@@ -104,7 +106,8 @@
       'position': 'fixed',
       'top': '0',
       'left': left + 'px',
-      'bottom': this.origStyle.bottom
+      'bottom': this.origStyle.bottom,
+      'z-index': '100'
     });
   };
 
