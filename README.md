@@ -23,7 +23,7 @@ Sets the element stick in the parent element or entire document.
 
 *`StickScope.Document`*: Sets the element stick in the entire document.
 
-#### *className: string (default: `stick`)*
+#### *className: string (default: `"stick"`)*
 
 Sets the class name to the element when it's stick.
 
