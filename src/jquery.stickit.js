@@ -140,6 +140,8 @@
         if(top >= 0)
           return;
 
+        spacer.height(element.height());
+        spacer.show();
         var left = rect.left - this.margin.left;
         if(this.options.scope == Scope.Document)
           this.setFixed(left);
@@ -152,8 +154,6 @@
             this.setFixed(left);
         }
         
-        spacer.height(element.height());
-        spacer.show();
         if(!spacer.width())
           spacer.width(element.width());
         break;
