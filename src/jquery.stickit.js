@@ -1,5 +1,5 @@
 /*
- * jQuery-stickit v0.1.0
+ * jQuery-stickit v0.1.1
  * https://github.com/emn178/jquery-stickit
  *
  * Copyright 2014, emn178@gmail.com
@@ -25,6 +25,7 @@
   {
     this.options = options || {};
     this.options.scope = this.options.scope || Scope.Parent;
+    this.options.className = this.options.className || 'stick';
     this.element = $(element);
     this.stick = Stick.None;
     this.spacer = $('<div />');
@@ -50,7 +51,8 @@
       position: element.style.position,
       left: element.style.left,
       top: element.style.top,
-      bottom: element.style.bottom
+      bottom: element.style.bottom,
+      zIndex: element.style.zIndex
     };
   };
 
@@ -78,27 +80,34 @@
     this.spacer.hide();
     this.spacer.css('width', '');
     this.restore();
+    this.element.removeClass('stick');
   };
 
   Sticker.prototype.setAbsolute = function() {
+    if(this.stick == Stick.None)
+      this.element.addClass('stick');
     this.stick = Stick.Absolute;
     this.element.css({
       'width': this.element.width() + 'px',
       'position': 'absolute',
       'top': this.origStyle.top,
       'left': this.origStyle.left,
-      'bottom': '0'
+      'bottom': '0',
+      'z-index': '100'
     });
   };
 
   Sticker.prototype.setFixed = function(left) {
+    if(this.stick == Stick.None)
+      this.element.addClass('stick');
     this.stick = Stick.Fixed;
     this.element.css({
       'width': this.element.width() + 'px',
       'position': 'fixed',
       'top': '0',
       'left': left + 'px',
-      'bottom': this.origStyle.bottom
+      'bottom': this.origStyle.bottom,
+      'z-index': '100'
     });
   };
 
@@ -140,6 +149,8 @@
         if(top >= 0)
           return;
 
+        spacer.height(element.height());
+        spacer.show();
         var left = rect.left - this.margin.left;
         if(this.options.scope == Scope.Document)
           this.setFixed(left);
@@ -152,8 +163,6 @@
             this.setFixed(left);
         }
         
-        spacer.height(element.height());
-        spacer.show();
         if(!spacer.width())
           spacer.width(element.width());
         break;
