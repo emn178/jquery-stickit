@@ -43,12 +43,9 @@ body, html, h1, h2 {
   color: #4183c4;
 }
 
-.sections {
-  margin-top: -50px;
-}
-
 .section {
-  padding-top: 50px;
+  padding-top: 93px; 
+  margin-top: -93px;
 }
 
 .section-title {
