@@ -36,6 +36,8 @@
 
 <p>This is a jQuery plugin provides a sticky header, sidebar or else when scrolling.</p>
 
+<p>If you want it works in mobile device when scrolling, you could try <a href="http://emn178.github.io/jquery-mscroll">jQuery-mscroll</a>.</p>
+
 <h2>
 <a name="demo" class="anchor" href="#demo"><span class="octicon octicon-link"></span></a>Demo</h2>
 
@@ -71,6 +73,12 @@
 
 <p>Sets the class name to the element when it's stick.</p>
 
+<h4>
+<a name="top-number-default-0" class="anchor" href="#top-number-default-0"><span class="octicon octicon-link"></span></a><em>top: number (default: <code>0</code>)</em>
+</h4>
+
+<p>Sets sticky top, eg. it will be stuck at position top 50 if you set 50.</p>
+
 <h2>
 <a name="example" class="anchor" href="#example"><span class="octicon octicon-link"></span></a>Example</h2>
 
@@ -78,7 +86,7 @@
 
 <div class="highlight highlight-JavaScript"><pre><span class="nx">$</span><span class="p">(</span><span class="s1">'#sidebar'</span><span class="p">).</span><span class="nx">stickit</span><span class="p">();</span> <span class="c1">// default StickScope.Parent</span>
 <span class="nx">$</span><span class="p">(</span><span class="s1">'#header'</span><span class="p">).</span><span class="nx">stickit</span><span class="p">({</span><span class="nx">scope</span><span class="o">:</span> <span class="nx">StickScope</span><span class="p">.</span><span class="nx">Parent</span><span class="p">});</span>
-<span class="nx">$</span><span class="p">(</span><span class="s1">'#navbar'</span><span class="p">).</span><span class="nx">stickit</span><span class="p">({</span><span class="nx">scope</span><span class="o">:</span> <span class="nx">StickScope</span><span class="p">.</span><span class="nx">Document</span><span class="p">});</span>
+<span class="nx">$</span><span class="p">(</span><span class="s1">'#navbar'</span><span class="p">).</span><span class="nx">stickit</span><span class="p">({</span><span class="nx">scope</span><span class="o">:</span> <span class="nx">StickScope</span><span class="p">.</span><span class="nx">Document</span><span class="p">,</span> <span class="nx">top</span><span class="o">:</span> <span class="mi">50</span><span class="p">});</span>
 </pre></div>
 
 <h2>
