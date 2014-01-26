@@ -1,6 +1,8 @@
 # jQuery-stickit
 This is a jQuery plugin provides a sticky header, sidebar or else when scrolling.
 
+If you want it works in mobile device when scrolling, you could try [jQuery-mscroll](http://emn178.github.io/jquery-mscroll).
+
 ## Demo
 [Sidebar](http://emn178.github.io/jquery-stickit/demo/sidebar/)  
 [Header](http://emn178.github.io/jquery-stickit/demo/header/)  
@@ -27,12 +29,16 @@ Sets the element stick in the parent element or entire document.
 
 Sets the class name to the element when it's stick.
 
+#### *top: number (default: `0`)*
+
+Sets sticky top, eg. it will be stuck at position top 50 if you set 50.
+
 ## Example
 Code
 ```JavaScript
 $('#sidebar').stickit(); // default StickScope.Parent
 $('#header').stickit({scope: StickScope.Parent});
-$('#navbar').stickit({scope: StickScope.Document});
+$('#navbar').stickit({scope: StickScope.Document, top: 50});
 ```
 
 ## License
