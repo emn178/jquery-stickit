@@ -1,5 +1,5 @@
 /*
- * jQuery-stickit v0.1.1
+ * jQuery-stickit v0.1.2
  * https://github.com/emn178/jquery-stickit
  *
  * Copyright 2014, emn178@gmail.com
@@ -26,6 +26,7 @@
     this.options = options || {};
     this.options.scope = this.options.scope || Scope.Parent;
     this.options.className = this.options.className || 'stick';
+    this.options.top = this.options.top || 0;
     this.element = $(element);
     this.stick = Stick.None;
     this.spacer = $('<div />');
@@ -41,6 +42,7 @@
     if(this.element.parent().css('position') == 'static')
       this.element.parent().css('position', 'relative');
     this.bound();
+    this.precalculate();
     this.store();
   }
 
@@ -75,6 +77,11 @@
     };
   };
 
+  Sticker.prototype.precalculate = function() {
+    this.baseTop = this.margin.top + this.options.top;
+    this.basePadding = this.baseTop + this.margin.bottom;
+  };
+
   Sticker.prototype.reset = function() {
     this.stick = Stick.None;
     this.spacer.hide();
@@ -93,7 +100,7 @@
       'top': this.origStyle.top,
       'left': this.origStyle.left,
       'bottom': '0',
-      'z-index': '100'
+      'z-index': '99'
     });
   };
 
@@ -104,7 +111,7 @@
     this.element.css({
       'width': this.element.width() + 'px',
       'position': 'fixed',
-      'top': '0',
+      'top': this.options.top + 'px',
       'left': left + 'px',
       'bottom': this.origStyle.bottom,
       'z-index': '100'
@@ -118,34 +125,34 @@
     {
       case Stick.Fixed:
         var rect = spacer[0].getBoundingClientRect();
-        var top = rect.top - this.margin.top;
+        var top = rect.top - this.baseTop;
         if(top >= 0)
           this.reset();
         else if(this.options.scope == Scope.Parent)
         {
           // check parent
           rect = element.parent()[0].getBoundingClientRect();
-          if(rect.bottom - this.parent.border.bottom <= element.outerHeight() + this.margin.top + this.margin.bottom)
+          if(rect.bottom - this.parent.border.bottom <= element.outerHeight() + this.basePadding)
             this.setAbsolute();
         }
         break;
       case Stick.Absolute:
         var rect = spacer[0].getBoundingClientRect();
-        var top = rect.top - this.margin.top;
+        var top = rect.top - this.baseTop;
         var left = rect.left - this.margin.left;
         if(top >= 0)
           this.reset();
         else
         {
           rect = element.parent()[0].getBoundingClientRect();
-          if(rect.bottom - this.parent.border.bottom > element.outerHeight() + this.margin.top + this.margin.bottom)
+          if(rect.bottom - this.parent.border.bottom > element.outerHeight() + this.basePadding)
             this.setFixed(left);
         }
         break;
       case Stick.None:
       default:
         var rect = element[0].getBoundingClientRect();
-        var top = rect.top - this.margin.top;
+        var top = rect.top - this.baseTop;
         if(top >= 0)
           return;
 
@@ -157,7 +164,7 @@
         else
         {
           var rect2 = element.parent()[0].getBoundingClientRect();
-          if(rect2.bottom - this.parent.border.bottom <= element.outerHeight() + this.margin.top + this.margin.bottom)
+          if(rect2.bottom - this.parent.border.bottom <= element.outerHeight() + this.basePadding)
             this.setAbsolute();
           else
             this.setFixed(left);
@@ -171,6 +178,7 @@
 
   Sticker.prototype.resize = function() {
     this.bound();
+    this.precalculate();
     if(this.stick == Stick.None)
       return;
     var element = this.element;

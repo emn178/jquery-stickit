@@ -1,3 +1,7 @@
+# v0.1.2 / 2014-01-26
+
+* Add sticky top.
+
 # v0.1.1 / 2014-01-23
 
 * Fixed flutter bug.
