@@ -4,9 +4,9 @@ This is a jQuery plugin provides a sticky header, sidebar or else when scrolling
 If you want it works in mobile device when scrolling, you could try [jQuery-mscroll](http://emn178.github.io/jquery-mscroll).
 
 ## Demo
-[Sidebar](http://emn178.github.io/jquery-stickit/demo/sidebar/)  
-[Header](http://emn178.github.io/jquery-stickit/demo/header/)  
-[Navbar](http://emn178.github.io/jquery-stickit/demo/navbar/)
+[Sidebar](http://emn178.github.io/jquery-stickit/samples/sidebar/)  
+[Header](http://emn178.github.io/jquery-stickit/samples/header/)  
+[Navbar](http://emn178.github.io/jquery-stickit/samples/navbar/)
 
 ## Browser Support
 jQuery-stickit currently supports IE8+, Chrome, Firefox, Safari and Opera.
@@ -36,9 +36,16 @@ Sets sticky top, eg. it will be stuck at position top 50 if you set 50.
 ## Example
 Code
 ```JavaScript
-$('#sidebar').stickit(); // default StickScope.Parent
-$('#header').stickit({scope: StickScope.Parent});
-$('#navbar').stickit({scope: StickScope.Document, top: 50});
+$('.stickit').stickit({
+  // Sets the element stick in the parent element or entire document.
+  scope: StickScope.Parent,
+
+  // Sets the class name to the element when it's stick.
+  className: 'stick',
+
+  // Sets sticky top, eg. it will be stuck at position top 50 if you set 50.
+  top: 0
+});
 ```
 
 ## License
