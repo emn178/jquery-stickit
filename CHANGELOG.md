@@ -1,3 +1,7 @@
+# v0.1.3 / 2014-02-04
+
+* Avoid event listener lost.
+
 # v0.1.2 / 2014-01-26
 
 * Add sticky top.

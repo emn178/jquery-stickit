@@ -1,5 +1,5 @@
 /*
- * jQuery-stickit v0.1.2
+ * jQuery-stickit v0.1.3
  * https://github.com/emn178/jquery-stickit
  *
  * Copyright 2014, emn178@gmail.com
@@ -191,32 +191,39 @@
       var left = rect.left - this.margin.left;
       element.css('left', left + 'px');
     }
+    this.locate();
   };
-
-  var stickers = [];
-  function locate()
-  {
-    for(var i = 0;i < stickers.length;++i)
-      stickers[i].locate();
-  }
-
-  function resize()
-  {
-    for(var i = 0;i < stickers.length;++i)
-      stickers[i].resize();
-    locate();
-  }
 
   $.fn.stickit = function(options) {
     this.each(function() {
       var sticker = new Sticker(this, options);
-      stickers.push(sticker);
+      $(this).data('jquery-stickit', sticker);
       sticker.locate();
     });
   };
 
+  $.expr[':']['jquery-stickit'] = function(element) {
+    return $(element).data('jquery-stickit');
+  };
+
+  function resize()
+  {
+    $(':jquery-stickit').each(function() {
+      var sticker = $(this).data('jquery-stickit');
+      sticker.resize();
+    });
+  }
+
+  function scroll()
+  {
+    $(':jquery-stickit').each(function() {
+      var sticker = $(this).data('jquery-stickit');
+      sticker.locate();
+    });
+  }
+
   $(document).ready(function() {
     $(window).bind('resize', resize);
-    $(window).bind('scroll', locate);
+    $(window).bind('scroll', scroll);
   });
 })(jQuery, window, document);
