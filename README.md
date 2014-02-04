@@ -1,5 +1,5 @@
 # jQuery-stickit
-This is a jQuery plugin provides a sticky header, sidebar or else when scrolling.
+A jQuery plugin provides a sticky header, sidebar or else when scrolling.
 
 If you want it works in mobile device when scrolling, you could try [jQuery-mscroll](https://github.com/emn178/jquery-mscroll).
 
