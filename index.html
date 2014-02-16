@@ -39,6 +39,11 @@
 <p>If you want it works in mobile device when scrolling, you could try <a href="https://github.com/emn178/jquery-mscroll">jQuery-mscroll</a>.</p>
 
 <h2>
+<a name="download" class="anchor" href="#download"><span class="octicon octicon-link"></span></a>Download</h2>
+
+<p><a href="https://raw.github.com/emn178/jquery-stickit/master/build/jquery.stickit.min.js">Compress</a><br><a href="https://raw.github.com/emn178/jquery-stickit/master/src/jquery.stickit.js">Uncompress</a></p>
+
+<h2>
 <a name="demo" class="anchor" href="#demo"><span class="octicon octicon-link"></span></a>Demo</h2>
 
 <p><a href="http://emn178.github.io/jquery-stickit/samples/sidebar/">Sidebar</a><br><a href="http://emn178.github.io/jquery-stickit/samples/header/">Header</a><br><a href="http://emn178.github.io/jquery-stickit/samples/navbar/">Navbar</a></p>
@@ -68,7 +73,7 @@
 <p><em><code>StickScope.Document</code></em>: Sets the element stick in the entire document.</p>
 
 <h4>
-<a name="classname-string-default-stick" class="anchor" href="#classname-string-default-stick"><span class="octicon octicon-link"></span></a><em>className: string (default: <code>"stick"</code>)</em>
+<a name="classname-string-default-stick" class="anchor" href="#classname-string-default-stick"><span class="octicon octicon-link"></span></a><em>className: string (default: <code>'stick'</code>)</em>
 </h4>
 
 <p>Sets the class name to the element when it's stick.</p>
@@ -78,6 +83,12 @@
 </h4>
 
 <p>Sets sticky top, eg. it will be stuck at position top 50 if you set 50.</p>
+
+<h4>
+<a name="extraheight-number-default-0" class="anchor" href="#extraheight-number-default-0"><span class="octicon octicon-link"></span></a><em>extraHeight: number (default: <code>0</code>)</em>
+</h4>
+
+<p>Sets extra height for parent element, it could be used only StickScope.Parent. When the contents of parent has margin or something let the actual height out of container, you could use this options to fix.</p>
 
 <h2>
 <a name="example" class="anchor" href="#example"><span class="octicon octicon-link"></span></a>Example</h2>
@@ -92,7 +103,10 @@
   <span class="nx">className</span><span class="o">:</span> <span class="s1">'stick'</span><span class="p">,</span>
 
   <span class="c1">// Sets sticky top, eg. it will be stuck at position top 50 if you set 50.</span>
-  <span class="nx">top</span><span class="o">:</span> <span class="mi">0</span>
+  <span class="nx">top</span><span class="o">:</span> <span class="mi">0</span><span class="p">,</span>
+
+  <span class="c1">// Sets extra height for parent element, it could be used only StickScope.Parent. When the contents of parent has margin or something let the actual height out of container, you could use this options to fix.</span>
+  <span class="nx">extraHeight</span><span class="o">:</span> <span class="mi">0</span>
 <span class="p">});</span>
 </pre></div>
 
