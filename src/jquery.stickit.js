@@ -1,5 +1,5 @@
 /*
- * jQuery-stickit v0.1.3
+ * jQuery-stickit v0.1.4
  * https://github.com/emn178/jquery-stickit
  *
  * Copyright 2014, emn178@gmail.com
@@ -27,6 +27,7 @@
     this.options.scope = this.options.scope || Scope.Parent;
     this.options.className = this.options.className || 'stick';
     this.options.top = this.options.top || 0;
+    this.options.extraHeight = this.options.extraHeight || 0;
     this.element = $(element);
     this.stick = Stick.None;
     this.spacer = $('<div />');
@@ -80,6 +81,7 @@
   Sticker.prototype.precalculate = function() {
     this.baseTop = this.margin.top + this.options.top;
     this.basePadding = this.baseTop + this.margin.bottom;
+    this.baseParentOffset = this.options.extraHeight - this.parent.border.bottom;
   };
 
   Sticker.prototype.reset = function() {
@@ -99,7 +101,7 @@
       'position': 'absolute',
       'top': this.origStyle.top,
       'left': this.origStyle.left,
-      'bottom': '0',
+      'bottom': -this.options.extraHeight + 'px',
       'z-index': '99'
     });
   };
@@ -132,7 +134,7 @@
         {
           // check parent
           rect = element.parent()[0].getBoundingClientRect();
-          if(rect.bottom - this.parent.border.bottom <= element.outerHeight() + this.basePadding)
+          if(rect.bottom + this.baseParentOffset <= element.outerHeight() + this.basePadding)
             this.setAbsolute();
         }
         break;
@@ -145,7 +147,7 @@
         else
         {
           rect = element.parent()[0].getBoundingClientRect();
-          if(rect.bottom - this.parent.border.bottom > element.outerHeight() + this.basePadding)
+          if(rect.bottom + this.baseParentOffset > element.outerHeight() + this.basePadding)
             this.setFixed(left);
         }
         break;
@@ -164,7 +166,7 @@
         else
         {
           var rect2 = element.parent()[0].getBoundingClientRect();
-          if(rect2.bottom - this.parent.border.bottom <= element.outerHeight() + this.basePadding)
+          if(rect2.bottom + this.baseParentOffset <= element.outerHeight() + this.basePadding)
             this.setAbsolute();
           else
             this.setFixed(left);
