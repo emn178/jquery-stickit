@@ -1,3 +1,7 @@
+# v0.1.4 / 2014-02-16
+
+* Add extra height.
+
 # v0.1.3 / 2014-02-04
 
 * Avoid event listener lost.
