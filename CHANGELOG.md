@@ -1,3 +1,8 @@
+# v0.1.5 / 2014-05-02
+
+* Fixed classname bug.
+* Support older version jQuery.
+
 # v0.1.4 / 2014-02-16
 
 * Add extra height.
