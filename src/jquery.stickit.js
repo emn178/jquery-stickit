@@ -1,5 +1,5 @@
 /*
- * jQuery-stickit v0.1.4
+ * jQuery-stickit v0.1.5
  * https://github.com/emn178/jquery-stickit
  *
  * Copyright 2014, emn178@gmail.com
@@ -8,6 +8,10 @@
  * http://www.opensource.org/licenses/MIT
  */
 ;(function($, window, document, undefined) {
+  var KEY = 'jquery-stickit';
+  var SPACER_KEY = KEY + '-spacer';
+  var SELECTOR = ':' + KEY;
+
   var Scope = {
     Parent: 0,
     Document: 1
@@ -34,7 +38,7 @@
     this.spacer[0].id = element.id;
     this.spacer[0].className = element.className;
     this.spacer[0].style.cssText = element.style.cssText;
-    this.spacer.addClass('stickit-spacer');
+    this.spacer.addClass(SPACER_KEY);
     this.spacer.css({
       display: 'none',
       visibility: 'hidden'
@@ -89,12 +93,12 @@
     this.spacer.hide();
     this.spacer.css('width', '');
     this.restore();
-    this.element.removeClass('stick');
+    this.element.removeClass(this.options.className);
   };
 
   Sticker.prototype.setAbsolute = function() {
     if(this.stick == Stick.None)
-      this.element.addClass('stick');
+      this.element.addClass(this.options.className);
     this.stick = Stick.Absolute;
     this.element.css({
       'width': this.element.width() + 'px',
@@ -108,7 +112,7 @@
 
   Sticker.prototype.setFixed = function(left) {
     if(this.stick == Stick.None)
-      this.element.addClass('stick');
+      this.element.addClass(this.options.className);
     this.stick = Stick.Fixed;
     this.element.css({
       'width': this.element.width() + 'px',
@@ -199,33 +203,30 @@
   $.fn.stickit = function(options) {
     this.each(function() {
       var sticker = new Sticker(this, options);
-      $(this).data('jquery-stickit', sticker);
+      $(this).data(KEY, sticker);
       sticker.locate();
     });
   };
 
-  $.expr[':']['jquery-stickit'] = function(element) {
-    return $(element).data('jquery-stickit');
+  $.expr[':'][KEY] = function(element) {
+    return !!$(element).data(KEY);
   };
 
   function resize()
   {
-    $(':jquery-stickit').each(function() {
-      var sticker = $(this).data('jquery-stickit');
-      sticker.resize();
+    $(SELECTOR).each(function() {
+      $(this).data(KEY).resize();
     });
   }
 
   function scroll()
   {
-    $(':jquery-stickit').each(function() {
-      var sticker = $(this).data('jquery-stickit');
-      sticker.locate();
+    $(SELECTOR).each(function() {
+      $(this).data(KEY).locate();
     });
   }
 
   $(document).ready(function() {
-    $(window).bind('resize', resize);
-    $(window).bind('scroll', scroll);
+    $(window).on('resize', resize).on('scroll', scroll);
   });
 })(jQuery, window, document);
