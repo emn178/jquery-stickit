@@ -1,5 +1,5 @@
 /*
- * jQuery-stickit v0.1.5
+ * jQuery-stickit v0.1.6
  * https://github.com/emn178/jquery-stickit
  *
  * Copyright 2014, emn178@gmail.com
@@ -11,6 +11,8 @@
   var KEY = 'jquery-stickit';
   var SPACER_KEY = KEY + '-spacer';
   var SELECTOR = ':' + KEY;
+
+  var OFFSET = navigator.userAgent.indexOf('MSIE 7.0') != -1 ? -2 : 0;
 
   var Scope = {
     Parent: 0,
@@ -96,7 +98,7 @@
     this.element.removeClass(this.options.className);
   };
 
-  Sticker.prototype.setAbsolute = function() {
+  Sticker.prototype.setAbsolute = function(left) {
     if(this.stick == Stick.None)
       this.element.addClass(this.options.className);
     this.stick = Stick.Absolute;
@@ -104,7 +106,7 @@
       'width': this.element.width() + 'px',
       'position': 'absolute',
       'top': this.origStyle.top,
-      'left': this.origStyle.left,
+      'left': left + 'px',
       'bottom': -this.options.extraHeight + 'px',
       'z-index': '99'
     });
@@ -139,7 +141,7 @@
           // check parent
           rect = element.parent()[0].getBoundingClientRect();
           if(rect.bottom + this.baseParentOffset <= element.outerHeight() + this.basePadding)
-            this.setAbsolute();
+            this.setAbsolute(this.spacer.position().left);
         }
         break;
       case Stick.Absolute:
@@ -152,7 +154,7 @@
         {
           rect = element.parent()[0].getBoundingClientRect();
           if(rect.bottom + this.baseParentOffset > element.outerHeight() + this.basePadding)
-            this.setFixed(left);
+            this.setFixed(left + OFFSET);
         }
         break;
       case Stick.None:
@@ -171,9 +173,9 @@
         {
           var rect2 = element.parent()[0].getBoundingClientRect();
           if(rect2.bottom + this.baseParentOffset <= element.outerHeight() + this.basePadding)
-            this.setAbsolute();
+            this.setAbsolute(this.element.position().left);
           else
-            this.setFixed(left);
+            this.setFixed(left + OFFSET);
         }
         
         if(!spacer.width())
