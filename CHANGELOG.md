@@ -1,3 +1,8 @@
+# v0.1.6 / 2014-05-06
+
+* Fixed bug when element is float.
+* Support IE7.
+
 # v0.1.5 / 2014-05-02
 
 * Fixed classname bug.
