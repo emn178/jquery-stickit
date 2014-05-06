@@ -13,7 +13,7 @@ If you want it works in mobile device when scrolling, you could try [jQuery-mscr
 [Navbar](http://emn178.github.io/jquery-stickit/samples/navbar/)
 
 ## Browser Support
-jQuery-stickit currently supports IE8+, Chrome, Firefox, Safari and Opera.
+jQuery-stickit currently supports IE, Chrome, Firefox, Safari and Opera.
 
 ## Usage
 ```JavaScript
