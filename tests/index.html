@@ -8,7 +8,7 @@
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <div class="absolute">
+  <div class="absolute sticky">
     <p>This is content</p>
     <p>This is content</p>
     <p>This is content</p>
@@ -36,7 +36,7 @@
     <div class="float-right">Float</div>
   </div>
   <div class="wrap">
-    <div class="style" style="background-color: yellow;border: 25px solid gray;margin: 20px;padding: 15px;width:80%">This is style header</div>
+    <div class="sticky" style="background-color: yellow;border: 25px solid gray;margin: 20px;padding: 15px;width:80%">This is style header</div>
     <p>This is content</p>
     <p>This is content</p>
     <p>This is content</p>
@@ -47,7 +47,7 @@
     </div>
   </div>
   <div class="wrap">
-    <div class="header">This is header</div>
+    <div class="header box-sizing">This is box-sizing header</div>
     <p>This is content</p>
     <p>This is content</p>
     <p>This is content</p>
@@ -83,7 +83,7 @@
     <p>This is content</p>
   </div>
   <script>
-  $('.header,.style,.absolute,.sticky').stickit({scope: StickScope.Parent});
+  $('.header,.sticky').stickit({scope: StickScope.Parent});
   </script>
 </body>
 </html>

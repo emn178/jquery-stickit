@@ -1,5 +1,5 @@
 /*
- * jQuery-stickit v0.1.6
+ * jQuery-stickit v0.1.7
  * https://github.com/emn178/jquery-stickit
  *
  * Copyright 2014, emn178@gmail.com
@@ -12,7 +12,8 @@
   var SPACER_KEY = KEY + '-spacer';
   var SELECTOR = ':' + KEY;
 
-  var OFFSET = navigator.userAgent.indexOf('MSIE 7.0') != -1 ? -2 : 0;
+  var IE7 = navigator.userAgent.indexOf('MSIE 7.0') != -1;
+  var OFFSET = IE7 ? -2 : 0;
 
   var Scope = {
     Parent: 0,
@@ -71,6 +72,17 @@
 
   Sticker.prototype.bound = function() {
     var element = this.element;
+    if(!IE7 && element.css('box-sizing') == 'border-box')
+    {
+      var bl = parseInt(element.css('border-left-width')) || 0;
+      var br = parseInt(element.css('border-right-width')) || 0;
+      var pl = parseInt(element.css('padding-left')) || 0;
+      var pr = parseInt(element.css('padding-right')) || 0;
+      this.extraWidth = bl + br + pl + pr;
+    }
+    else
+      this.extraWidth = 0;
+    
     this.margin = {
       top: parseInt(element.css('margin-top')) || 0,
       bottom: parseInt(element.css('margin-bottom')) || 0,
@@ -103,7 +115,7 @@
       this.element.addClass(this.options.className);
     this.stick = Stick.Absolute;
     this.element.css({
-      'width': this.element.width() + 'px',
+      'width': this.element.width() + this.extraWidth + 'px',
       'position': 'absolute',
       'top': this.origStyle.top,
       'left': left + 'px',
@@ -117,7 +129,7 @@
       this.element.addClass(this.options.className);
     this.stick = Stick.Fixed;
     this.element.css({
-      'width': this.element.width() + 'px',
+      'width': this.element.width() + this.extraWidth  + 'px',
       'position': 'fixed',
       'top': this.options.top + 'px',
       'left': left + 'px',

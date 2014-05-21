@@ -1,3 +1,7 @@
+# v0.1.7 / 2014-05-21
+
+* Fixed box-sizing:border-box bug.
+
 # v0.1.6 / 2014-05-06
 
 * Fixed bug when element is float.

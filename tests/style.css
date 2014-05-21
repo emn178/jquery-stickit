@@ -54,3 +54,6 @@
   padding: 15px;
   background-color: blue;
 }
+.box-sizing {
+  box-sizing: border-box;
+}
