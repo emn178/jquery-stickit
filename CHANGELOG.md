@@ -1,3 +1,7 @@
+# v0.1.8 / 2014-07-27
+
+* Change binding method for supporting jquery 1.6.4
+
 # v0.1.7 / 2014-05-21
 
 * Fixed box-sizing:border-box bug.
