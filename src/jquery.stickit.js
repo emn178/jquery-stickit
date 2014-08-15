@@ -1,5 +1,5 @@
 /*
- * jQuery-stickit v0.1.7
+ * jQuery-stickit v0.1.8
  * https://github.com/emn178/jquery-stickit
  *
  * Copyright 2014, emn178@gmail.com
@@ -241,6 +241,6 @@
   }
 
   $(document).ready(function() {
-    $(window).on('resize', resize).on('scroll', scroll);
+    $(window).bind('resize', resize).bind('scroll', scroll);
   });
 })(jQuery, window, document);
