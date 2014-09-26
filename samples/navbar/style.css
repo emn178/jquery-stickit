@@ -19,6 +19,9 @@ body, html, h1, h2 {
 #navbar {
   background-color: #e7e7e7;
   color: white;
+  -webkit-transition: all 1s;
+  -o-transition: all 1s;
+  transition: all 1s;
 }
 
 .nav {
@@ -62,5 +65,18 @@ body, html, h1, h2 {
   line-height: 1.5;
   color: #777;
   border-top: 1px solid #eee;
+  text-align: center;
+}
+
+#navbar.stick {
+  background-color: rgb(178, 199, 202);
+}
+
+#code-block {
+  margin: 10px auto;
+  width: 80%;
+}
+
+#code-block h3 {
   text-align: center;
 }

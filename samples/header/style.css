@@ -32,3 +32,12 @@ body, html, h1, h2 {
   border-top: 1px solid #eee;
   text-align: center;
 }
+
+#code-block {
+  margin: 10px auto;
+  width: 80%;
+}
+
+#code-block h3 {
+  text-align: center;
+}

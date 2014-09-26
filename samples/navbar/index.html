@@ -35,6 +35,13 @@
         Scroll down to see the effect.
       </p>
     </div>
+    <div id="code-block">
+      <h3>Source Code</h3>
+      <pre class="brush: js">
+        $('#header').stickit({scope: StickScope.Document});
+        $('#navbar').stickit({scope: StickScope.Document, top: 43});
+      </pre>
+    </div>
     <div id="navbar">
       <ul class="nav">
         <li><a href="#batman">Batman</a></li>
@@ -130,6 +137,14 @@
   <script>
     $('#header').stickit({scope: StickScope.Document});
     $('#navbar').stickit({scope: StickScope.Document, top: 43});
+  </script>
+  <link href="http://alexgorbatchev.com/pub/sh/current/styles/shCore.css" rel="stylesheet">
+  <link href="http://alexgorbatchev.com/pub/sh/current/styles/shThemeDefault.css" rel="stylesheet">
+  <script src="http://alexgorbatchev.com/pub/sh/current/scripts/shCore.js"></script>
+  <script src="http://alexgorbatchev.com/pub/sh/current/scripts/shBrushJScript.js"></script>
+  <script src="http://alexgorbatchev.com/pub/sh/current/scripts/shBrushXml.js"></script>
+  <script>
+    SyntaxHighlighter.all();
   </script>
 </body>
 </html>
