@@ -28,6 +28,8 @@
 
   window.StickScope = Scope;
 
+  var init = false;
+
   function Sticker(element, options)
   {
     this.options = options || {};
@@ -115,12 +117,12 @@
       this.element.addClass(this.options.className);
     this.stick = Stick.Absolute;
     this.element.css({
-      'width': this.element.width() + this.extraWidth + 'px',
-      'position': 'absolute',
-      'top': this.origStyle.top,
-      'left': left + 'px',
-      'bottom': -this.options.extraHeight + 'px',
-      'z-index': '99'
+      width: this.element.width() + this.extraWidth + 'px',
+      position: 'absolute',
+      top: this.origStyle.top,
+      left: left + 'px',
+      bottom: -this.options.extraHeight + 'px',
+      'z-index': 99
     });
   };
 
@@ -129,12 +131,12 @@
       this.element.addClass(this.options.className);
     this.stick = Stick.Fixed;
     this.element.css({
-      'width': this.element.width() + this.extraWidth  + 'px',
-      'position': 'fixed',
-      'top': this.options.top + 'px',
-      'left': left + 'px',
-      'bottom': this.origStyle.bottom,
-      'z-index': '100'
+      width: this.element.width() + this.extraWidth  + 'px',
+      position: 'fixed',
+      top: this.options.top + 'px',
+      left: left + 'px',
+      bottom: this.origStyle.bottom,
+      'z-index': 100
     });
   };
 
@@ -220,6 +222,14 @@
       $(this).data(KEY, sticker);
       sticker.locate();
     });
+
+    if(!init) {
+      init = true;
+      $(document).ready(function() {
+        $(window).bind('resize', resize).bind('scroll', scroll);
+      });
+    }
+    return this;
   };
 
   $.expr[':'][KEY] = function(element) {
@@ -239,8 +249,4 @@
       $(this).data(KEY).locate();
     });
   }
-
-  $(document).ready(function() {
-    $(window).bind('resize', resize).bind('scroll', scroll);
-  });
 })(jQuery, window, document);
