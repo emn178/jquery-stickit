@@ -1,3 +1,8 @@
+# v0.1.9 / 2014-09-26
+
+* Bind resize and scroll events only on demand.
+* Return this for jQuery chaining.
+
 # v0.1.8 / 2014-07-27
 
 * Change binding method for supporting jquery 1.6.4
