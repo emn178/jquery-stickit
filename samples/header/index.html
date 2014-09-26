@@ -35,6 +35,12 @@
         Scroll down to see the effect.
       </p>
     </div>
+    <div id="code-block">
+      <h3>Source Code</h3>
+      <pre class="brush: js">
+        $('.section-title').stickit({extraHeight: 16});
+      </pre>
+    </div>
     <div class="sections">
       <div class="section">
         <h2 class="section-title">Batman</h2>
@@ -117,7 +123,14 @@
     © 2014 jQuery-stickit Demo and content from Wikipedia
   </div>
   <script>
-    $('.section-title').stickit({scope: StickScope.Parent, extraHeight: 16});
+    $('.section-title').stickit({extraHeight: 16});
+  </script>
+  <link href="http://alexgorbatchev.com/pub/sh/current/styles/shCore.css" rel="stylesheet">
+  <link href="http://alexgorbatchev.com/pub/sh/current/styles/shThemeDefault.css" rel="stylesheet">
+  <script src="http://alexgorbatchev.com/pub/sh/current/scripts/shCore.js"></script>
+  <script src="http://alexgorbatchev.com/pub/sh/current/scripts/shBrushJScript.js"></script>
+  <script>
+    SyntaxHighlighter.all();
   </script>
 </body>
 </html>
