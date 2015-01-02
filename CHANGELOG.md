@@ -1,3 +1,8 @@
+# v0.1.10 / 2015-01-02
+
+* Add bower package.
+* Fixed JSHint warnings.
+
 # v0.1.9 / 2014-09-26
 
 * Bind resize and scroll events only on demand.

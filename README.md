@@ -7,6 +7,12 @@ If you want it works in mobile device when scrolling, you could try [jQuery-mscr
 [Compress](https://raw.github.com/emn178/jquery-stickit/master/build/jquery.stickit.min.js)  
 [Uncompress](https://raw.github.com/emn178/jquery-stickit/master/src/jquery.stickit.js)
 
+## Installation
+You can also install jquery-stickit by using Bower.
+```
+bower install jquery-stickit
+```
+
 ## Demo
 [Sidebar](http://emn178.github.io/jquery-stickit/samples/sidebar/)  
 [Header](http://emn178.github.io/jquery-stickit/samples/header/)  
