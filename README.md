@@ -47,6 +47,12 @@ Sets sticky top, eg. it will be stuck at position top 50 if you set 50.
 
 Sets extra height for parent element, it could be used only StickScope.Parent. When the contents of parent has margin or something let the actual height out of container, you could use this options to fix.
 
+### Methods
+
+#### destroy()
+
+Removes the stickit functionality completely. 
+
 ## Example
 Code
 ```JavaScript
@@ -63,6 +69,8 @@ $('.stickit').stickit({
   // Sets extra height for parent element, it could be used only StickScope.Parent. When the contents of parent has margin or something let the actual height out of container, you could use this options to fix.
   extraHeight: 0
 });
+
+$('.stickit').stickit('destroy');
 ```
 
 ## License

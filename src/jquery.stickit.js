@@ -1,5 +1,5 @@
 /*
- * jQuery-stickit v0.1.10
+ * jQuery-stickit v0.1.11
  * https://github.com/emn178/jquery-stickit
  *
  * Copyright 2014-2015, emn178@gmail.com
@@ -153,7 +153,7 @@
           this.reset();
         } else if(this.options.scope == Scope.Parent) {
           rect = element.parent()[0].getBoundingClientRect();
-          if(rect.bottom + this.baseParentOffset <= element.outerHeight() + this.basePadding) {
+          if(rect.bottom + this.baseParentOffset <= element.outerHeight(false) + this.basePadding) {
             this.setAbsolute(this.spacer.position().left);
           }
         }
@@ -166,7 +166,7 @@
           this.reset();
         } else {
           rect = element.parent()[0].getBoundingClientRect();
-          if(rect.bottom + this.baseParentOffset > element.outerHeight() + this.basePadding) {
+          if(rect.bottom + this.baseParentOffset > element.outerHeight(false) + this.basePadding) {
             this.setFixed(left + OFFSET);
           }
         }
@@ -187,7 +187,7 @@
           this.setFixed(left);
         } else {
           var rect2 = element.parent()[0].getBoundingClientRect();
-          if(rect2.bottom + this.baseParentOffset <= element.outerHeight() + this.basePadding) {
+          if(rect2.bottom + this.baseParentOffset <= element.outerHeight(false) + this.basePadding) {
             this.setAbsolute(this.element.position().left);
           } else {
             this.setFixed(left + OFFSET);
@@ -219,6 +219,12 @@
     this.locate();
   };
 
+  Sticker.prototype.destroy = function() {
+    this.reset();
+    this.spacer.remove();
+    this.element.removeData(KEY);
+  };
+
   function resize() {
     $(SELECTOR).each(function() {
       $(this).data(KEY).resize();
@@ -231,18 +237,32 @@
     });
   }
 
-  $.fn.stickit = function(options) {
-    this.each(function() {
-      var sticker = new Sticker(this, options);
-      $(this).data(KEY, sticker);
-      sticker.locate();
-    });
-
-    if(!init) {
-      init = true;
-      $(document).ready(function() {
-        $(window).bind('resize', resize).bind('scroll', scroll);
+  var PublicMethods = ['destroy'];
+  $.fn.stickit = function(method, options) {
+    // init
+    if(typeof(method) == 'string') {
+      if($.inArray(method, PublicMethods) != -1) {
+        this.each(function() {
+          var sticker = $(this).data(KEY);
+          if(sticker) {
+            sticker[method].apply(sticker, options);
+          }
+        });
+      }
+    } else {
+      options = method;
+      this.each(function() {
+        var sticker = new Sticker(this, options);
+        $(this).data(KEY, sticker);
+        sticker.locate();
       });
+
+      if(!init) {
+        init = true;
+        $(document).ready(function() {
+          $(window).bind('resize', resize).bind('scroll', scroll);
+        });
+      }
     }
     return this;
   };

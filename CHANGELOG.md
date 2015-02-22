@@ -1,3 +1,7 @@
+# v0.1.11 / 2015-02-22
+
+* Add destroy method.
+
 # v0.1.10 / 2015-01-02
 
 * Add bower package.

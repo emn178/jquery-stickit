@@ -19,6 +19,7 @@
     <p>This is content</p>
     <p>This is content</p>
   </div>
+  <input type="button" value="Destroy" id="destroy"/>
   <div class="wrap">
     <div class="header">This is header</div>
     <p>This is content</p>
@@ -84,6 +85,9 @@
   </div>
   <script>
   $('.header,.sticky').stickit({scope: StickScope.Parent});
+  $('#destroy').click(function() {
+    $('.header,.sticky').stickit('destroy');
+  });
   </script>
 </body>
 </html>
