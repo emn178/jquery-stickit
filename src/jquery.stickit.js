@@ -1,5 +1,5 @@
 /*
- * jQuery-stickit v0.1.11
+ * jQuery-stickit v0.1.12
  * https://github.com/emn178/jquery-stickit
  *
  * Copyright 2014-2015, emn178@gmail.com
@@ -37,6 +37,8 @@
     this.options.className = this.options.className || 'stick';
     this.options.top = this.options.top || 0;
     this.options.extraHeight = this.options.extraHeight || 0;
+    this.offsetY = 0;
+    this.lastY = 0;
     this.element = $(element);
     this.stick = Stick.None;
     this.spacer = $('<div />');
@@ -103,6 +105,7 @@
     this.baseTop = this.margin.top + this.options.top;
     this.basePadding = this.baseTop + this.margin.bottom;
     this.baseParentOffset = this.options.extraHeight - this.parent.border.bottom;
+    this.offsetHeight = Math.max(this.element.height() - screenHeight, 0);
   };
 
   Sticker.prototype.reset = function() {
@@ -128,19 +131,31 @@
     });
   };
 
-  Sticker.prototype.setFixed = function(left) {
+  Sticker.prototype.setFixed = function(left, lastY, offsetY) {
     if(this.stick == Stick.None) {
       this.element.addClass(this.options.className);
     }
     this.stick = Stick.Fixed;
+    this.lastY = lastY;
+    this.offsetY = offsetY;
     this.element.css({
       width: this.element.width() + this.extraWidth  + 'px',
       position: 'fixed',
-      top: this.options.top + 'px',
+      top: (this.options.top + offsetY) + 'px',
       left: left + 'px',
       bottom: this.origStyle.bottom,
       'z-index': 100
     });
+  };
+
+  Sticker.prototype.updateScroll = function(newY) {
+    if(this.offsetHeight == 0) {
+      return;
+    }
+    this.offsetY = Math.max(this.offsetY + newY - this.lastY, -this.offsetHeight);
+    this.offsetY = Math.min(this.offsetY, 0);
+    this.lastY = newY;
+    this.element.css('top', (this.options.top + this.offsetY) + 'px');
   };
 
   Sticker.prototype.locate = function() {
@@ -153,9 +168,13 @@
           this.reset();
         } else if(this.options.scope == Scope.Parent) {
           rect = element.parent()[0].getBoundingClientRect();
-          if(rect.bottom + this.baseParentOffset <= element.outerHeight(false) + this.basePadding) {
+          if(rect.bottom + this.baseParentOffset + this.offsetHeight <= element.outerHeight(false) + this.basePadding) {
             this.setAbsolute(this.spacer.position().left);
+          } else {
+            this.updateScroll(rect.bottom);
           }
+        } else {
+          this.updateScroll(rect.bottom);
         }
         break;
       case Stick.Absolute:
@@ -166,8 +185,8 @@
           this.reset();
         } else {
           rect = element.parent()[0].getBoundingClientRect();
-          if(rect.bottom + this.baseParentOffset > element.outerHeight(false) + this.basePadding) {
-            this.setFixed(left + OFFSET);
+          if(rect.bottom + this.baseParentOffset + this.offsetHeight > element.outerHeight(false) + this.basePadding) {
+            this.setFixed(left + OFFSET, rect.bottom, -this.offsetHeight);
           }
         }
         break;
@@ -184,13 +203,13 @@
         spacer.show();
         left = rect.left - this.margin.left;
         if(this.options.scope == Scope.Document) {
-          this.setFixed(left);
+          this.setFixed(left, rect.bottom, 0);
         } else {
           var rect2 = element.parent()[0].getBoundingClientRect();
           if(rect2.bottom + this.baseParentOffset <= element.outerHeight(false) + this.basePadding) {
             this.setAbsolute(this.element.position().left);
           } else {
-            this.setFixed(left + OFFSET);
+            this.setFixed(left + OFFSET, rect.bottom, 0);
           }
         }
         
@@ -225,7 +244,9 @@
     this.element.removeData(KEY);
   };
 
+  var screenHeight;
   function resize() {
+    screenHeight = window.innerHeight || document.documentElement.clientHeight;
     $(SELECTOR).each(function() {
       $(this).data(KEY).resize();
     });
@@ -259,6 +280,7 @@
 
       if(!init) {
         init = true;
+        resize();
         $(document).ready(function() {
           $(window).bind('resize', resize).bind('scroll', scroll);
         });

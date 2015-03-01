@@ -1,3 +1,7 @@
+# v0.1.12 / 2015-03-01
+
+* Enable sticky item scrollable.
+
 # v0.1.11 / 2015-02-22
 
 * Add destroy method.
