@@ -1,3 +1,7 @@
+# v0.1.13 / 2015-03-09
+
+* z-index configurable.
+
 # v0.1.12 / 2015-03-01
 
 * Enable sticky item scrollable.

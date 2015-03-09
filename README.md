@@ -43,6 +43,10 @@ Sets the class name to the element when it's stick.
 
 Sets sticky top, eg. it will be stuck at position top 50 if you set 50.
 
+#### *zIndex: number (default: `100` or z-index of element css)*
+
+Sets z-index. Default is try to get element z-index property from css style. If undefined, default is 100.
+
 #### *extraHeight: number (default: `0`)*
 
 Sets extra height for parent element, it could be used only StickScope.Parent. When the contents of parent has margin or something let the actual height out of container, you could use this options to fix.

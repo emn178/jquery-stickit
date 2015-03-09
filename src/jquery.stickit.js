@@ -32,14 +32,17 @@
   };
 
   function Sticker(element, options) {
+    this.element = $(element);
     this.options = options || {};
     this.options.scope = this.options.scope || Scope.Parent;
     this.options.className = this.options.className || 'stick';
     this.options.top = this.options.top || 0;
     this.options.extraHeight = this.options.extraHeight || 0;
+    if(this.options.zIndex === undefined) {
+      this.zIndex = this.element.css('z-index') || 100;
+    }
     this.offsetY = 0;
     this.lastY = 0;
-    this.element = $(element);
     this.stick = Stick.None;
     this.spacer = $('<div />');
     this.spacer[0].id = element.id;
@@ -127,7 +130,7 @@
       top: this.origStyle.top,
       left: left + 'px',
       bottom: -this.options.extraHeight + 'px',
-      'z-index': 99
+      'z-index': this.zIndex
     });
   };
 
@@ -144,7 +147,7 @@
       top: (this.options.top + offsetY) + 'px',
       left: left + 'px',
       bottom: this.origStyle.bottom,
-      'z-index': 100
+      'z-index': this.zIndex
     });
   };
 
