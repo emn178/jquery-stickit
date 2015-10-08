@@ -1,5 +1,5 @@
 /*
- * jQuery-stickit v0.1.12
+ * jQuery-stickit v0.1.14
  * https://github.com/emn178/jquery-stickit
  *
  * Copyright 2014-2015, emn178@gmail.com
@@ -163,6 +163,12 @@
 
   Sticker.prototype.locate = function() {
     var rect, top, left, element = this.element, spacer = this.spacer;
+    if(!element.is(':visible')) {
+      if(this.stick != Stick.None) {
+        this.reset();
+      }
+      return;
+    }
     switch(this.stick) {
       case Stick.Fixed:
         rect = spacer[0].getBoundingClientRect();

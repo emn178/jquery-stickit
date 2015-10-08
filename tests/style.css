@@ -57,3 +57,9 @@
 .box-sizing {
   box-sizing: border-box;
 }
+
+@media only screen and (max-width: 1000px) {
+  .float-right {
+    display: none;
+  }
+}
