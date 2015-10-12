@@ -1,8 +1,6 @@
 # jQuery-stickit
 A jQuery plugin provides a sticky header, sidebar or else when scrolling.
 
-If you want it works in mobile device when scrolling, you could try [jQuery-mscroll](https://github.com/emn178/jquery-mscroll).
-
 ## Download
 [Compress](https://raw.github.com/emn178/jquery-stickit/master/build/jquery.stickit.min.js)  
 [Uncompress](https://raw.github.com/emn178/jquery-stickit/master/src/jquery.stickit.js)
@@ -14,9 +12,9 @@ bower install jquery-stickit
 ```
 
 ## Demo
-[Sidebar](http://emn178.github.io/jquery-stickit/samples/sidebar/)  
-[Header](http://emn178.github.io/jquery-stickit/samples/header/)  
-[Navbar](http://emn178.github.io/jquery-stickit/samples/navbar/)
+[Sidebar](https://emn178.github.io/jquery-stickit/samples/sidebar/)  
+[Header](https://emn178.github.io/jquery-stickit/samples/header/)  
+[Navbar](https://emn178.github.io/jquery-stickit/samples/navbar/)
 
 ## Browser Support
 jQuery-stickit currently supports IE, Chrome, Firefox, Safari and Opera.
@@ -50,6 +48,14 @@ Sets z-index. Default is try to get element z-index property from css style. If 
 #### *extraHeight: number (default: `0`)*
 
 Sets extra height for parent element, it could be used only StickScope.Parent. When the contents of parent has margin or something let the actual height out of container, you could use this options to fix.
+
+#### *screenMinWidth: number (default: `undefined`)*
+
+Sets min width for RWD. This is equal to min-width in media query.
+
+#### *screenMaxWidth: number (default: `undefined`)*
+
+Sets max width for RWD. This is equal to max-width in media query.
 
 ### Methods
 

@@ -1,3 +1,7 @@
+# v0.2.0 / 2015-10-08
+
+* Support media query.
+
 # v0.1.14 / 2015-10-08
 
 * Fixed spacer size when element is invisible.

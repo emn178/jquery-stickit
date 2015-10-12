@@ -1,5 +1,5 @@
 /*
- * jQuery-stickit v0.1.14
+ * jQuery-stickit v0.2.0
  * https://github.com/emn178/jquery-stickit
  *
  * Copyright 2014-2015, emn178@gmail.com
@@ -40,6 +40,9 @@
     this.options.extraHeight = this.options.extraHeight || 0;
     if(this.options.zIndex === undefined) {
       this.zIndex = this.element.css('z-index') || 100;
+      if(this.zIndex == 'auto') {
+        this.zIndex = 100;
+      }
     }
     this.offsetY = 0;
     this.lastY = 0;
@@ -161,9 +164,15 @@
     this.element.css('top', (this.options.top + this.offsetY) + 'px');
   };
 
+  Sticker.prototype.isActive = function() {
+    return (this.options.screenMinWidth === undefined || screenWidth >= this.options.screenMinWidth) &&
+      (this.options.screenMaxWidth === undefined || screenWidth <= this.options.screenMaxWidth) &&
+      this.element.is(':visible');
+  };
+
   Sticker.prototype.locate = function() {
     var rect, top, left, element = this.element, spacer = this.spacer;
-    if(!element.is(':visible')) {
+    if(!this.isActive()) {
       if(this.stick != Stick.None) {
         this.reset();
       }
@@ -233,6 +242,7 @@
     this.bound();
     this.precalculate();
     if(this.stick == Stick.None) {
+      this.locate();
       return;
     }
     var element = this.element;
@@ -253,9 +263,10 @@
     this.element.removeData(KEY);
   };
 
-  var screenHeight;
+  var screenHeight, screenWidth;
   function resize() {
     screenHeight = window.innerHeight || document.documentElement.clientHeight;
+    screenWidth = window.innerWidth || document.documentElement.clientWidth;
     $(SELECTOR).each(function() {
       $(this).data(KEY).resize();
     });
@@ -280,13 +291,6 @@
         });
       }
     } else {
-      options = method;
-      this.each(function() {
-        var sticker = new Sticker(this, options);
-        $(this).data(KEY, sticker);
-        sticker.locate();
-      });
-
       if(!init) {
         init = true;
         resize();
@@ -294,6 +298,13 @@
           $(window).bind('resize', resize).bind('scroll', scroll);
         });
       }
+
+      options = method;
+      this.each(function() {
+        var sticker = new Sticker(this, options);
+        $(this).data(KEY, sticker);
+        sticker.locate();
+      });
     }
     return this;
   };

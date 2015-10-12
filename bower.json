@@ -1,7 +1,7 @@
 {
   "name": "jquery-stickit",
-  "version": "0.1.14",
-  "main": ["build/jquery.stickit.min.js"],
+  "version": "0.2.0",
+  "main": ["src/jquery.stickit.js"],
   "ignore": [
     "samples",
     "tests"

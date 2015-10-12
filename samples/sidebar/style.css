@@ -18,14 +18,7 @@ body, html, h1, h2 {
 
 #container {
   margin: 0 auto;
-  width: 1280px;
   overflow: auto;
-}
-
-#sidebar {
-  float: left;
-  width: 250px;
-  margin-right: 10px;
 }
 
 .menu {
@@ -54,13 +47,7 @@ body, html, h1, h2 {
   color: #4183c4;
 }
 
-.sections {
-  float: left;
-  width: 1000px;
-}
-
 .references {
-  width: 1280px;
   margin: 0 auto;
   margin-top: 10px;
 }
@@ -83,4 +70,25 @@ body, html, h1, h2 {
 
 #code-block h3 {
   text-align: center;
+}
+
+@media screen and (min-width: 1280px) {
+  #container {
+    width: 1280px;
+  }
+
+  #sidebar {
+    float: left;
+    width: 250px;
+    margin-right: 10px;
+  }
+
+  .sections {
+    float: left;
+    width: 1000px;
+  }
+
+  .references {
+    width: 1280px;
+  }
 }
