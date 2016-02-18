@@ -1,6 +1,11 @@
 # jQuery-stickit
 A jQuery plugin provides a sticky header, sidebar or else when scrolling.
 
+## Demo
+[Sidebar](https://emn178.github.io/jquery-stickit/samples/sidebar/)  
+[Header](https://emn178.github.io/jquery-stickit/samples/header/)  
+[Navbar](https://emn178.github.io/jquery-stickit/samples/navbar/)
+
 ## Download
 [Compress](https://raw.github.com/emn178/jquery-stickit/master/build/jquery.stickit.min.js)  
 [Uncompress](https://raw.github.com/emn178/jquery-stickit/master/src/jquery.stickit.js)
@@ -10,14 +15,6 @@ You can also install jquery-stickit by using Bower.
 ```
 bower install jquery-stickit
 ```
-
-## Demo
-[Sidebar](https://emn178.github.io/jquery-stickit/samples/sidebar/)  
-[Header](https://emn178.github.io/jquery-stickit/samples/header/)  
-[Navbar](https://emn178.github.io/jquery-stickit/samples/navbar/)
-
-## Browser Support
-jQuery-stickit currently supports IE, Chrome, Firefox, Safari and Opera.
 
 ## Usage
 ```JavaScript
@@ -88,4 +85,4 @@ The project is released under the [MIT license](http://www.opensource.org/licens
 
 ## Contact
 The project's website is located at https://github.com/emn178/jquery-stickit  
-Author: emn178@gmail.com
+Author: Yi-Cyuan Chen (emn178@gmail.com)

@@ -1,3 +1,7 @@
+# v0.2.1 / 2016-02-18
+
+* Fixed incorrect sticky position in some cases.
+
 # v0.2.0 / 2015-10-08
 
 * Support media query.
