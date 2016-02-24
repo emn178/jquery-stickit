@@ -1,3 +1,8 @@
+# v0.2.2 / 2016-02-24
+
+* Added mutation observer feature.
+* Added animationend and transitionend detection.
+
 # v0.2.1 / 2016-02-18
 
 * Fixed incorrect sticky position in some cases.

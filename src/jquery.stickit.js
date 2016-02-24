@@ -1,7 +1,7 @@
 /**
  * [jQuery-stickit]{@link https://github.com/emn178/jquery-stickit}
  *
- * @version 0.2.1
+ * @version 0.2.2
  * @author Yi-Cyuan Chen [emn178@gmail.com]
  * @copyright Yi-Cyuan Chen 2014-2016
  * @license MIT
@@ -12,6 +12,9 @@
   var SELECTOR = ':' + KEY;
   var IE7 = navigator.userAgent.indexOf('MSIE 7.0') != -1;
   var OFFSET = IE7 ? -2 : 0;
+  var MUTATION = window.MutationObserver !== undefined;
+  var animationend = 'animationend webkitAnimationEnd oAnimationEnd';
+  var transitionend = 'transitionend webkitTransitionEnd oTransitionEnd';
 
   var Scope = window.StickScope = {
     Parent: 0,
@@ -25,6 +28,29 @@
   };
 
   var init = false;
+
+  function throttle(func) {
+    var delay = 10;
+    var lastTime = 0;
+    var timer;
+    return function () {
+      var self = this, args = arguments;
+      var exec = function () {
+        lastTime = new Date();
+        func.apply(self, args);
+      };
+      if (timer) {
+        clearTimeout(timer);
+        timer = null;
+      }
+      var diff = new Date() - lastTime;
+      if (diff > delay) {
+        exec();
+      } else {
+        timer = setTimeout(exec, delay - diff);
+      }
+    };
+  }
 
   $.expr[':'][KEY] = function (element) {
     return !!$(element).data(KEY);
@@ -270,11 +296,11 @@
     });
   }
 
-  function scroll() {
+  var scroll = throttle(function () {
     $(SELECTOR).each(function () {
       $(this).data(KEY).locate();
     });
-  }
+  });
 
   var PublicMethods = ['destroy'];
   $.fn.stickit = function (method, options) {
@@ -294,7 +320,18 @@
         resize();
         $(document).ready(function () {
           $(window).bind('resize', resize).bind('scroll', scroll);
+          $(document.body).on(animationend + ' ' + transitionend, scroll);
         });
+
+        if (MUTATION) {
+          var observer = new MutationObserver(scroll);
+          observer.observe(document, { 
+            attributes: true, 
+            childList: true, 
+            characterData: true,
+            subtree: true
+          });
+        }
       }
 
       options = method;

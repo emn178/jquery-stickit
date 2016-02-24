@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+  <script src="https://code.jquery.com/jquery-1.10.1.min.js"></script>
+  <script type="text/javascript" src="../src/jquery.stickit.js"></script>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="body">
+    <div class="sidebar">Sidebar</div>
+    <div class="container">
+      <div class="box1"></div>
+    </div>
+  </div>
+  <button id="height">Toggle Height</button>
+  <button id="height_animation">Toggle Height(Animation)</button>
+  <div class="box1"></div>
+  <script>
+  $('.sidebar').stickit();
+  $('#height').click(function () {
+    $('.container .box1').toggle();
+  })
+  $('#height_animation').click(function () {
+    $('.container').toggleClass('height');
+  })
+  </script>
+</body>
+</html>

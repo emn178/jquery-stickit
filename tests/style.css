@@ -57,6 +57,36 @@
 .box-sizing {
   box-sizing: border-box;
 }
+.body:after {
+  content: '';
+  clear: both;
+  display: block;
+}
+.sidebar {
+  float: left;
+  width: 150px;
+  height: 400px;
+  border: 1px solid gray;
+}
+.container {
+  float: left;
+}
+.container .box1 {
+  -webkit-transition: all 1s;
+  -o-transition: all 1s;
+  transition: all 1s;
+}
+
+.container.height .box1 {
+  height: 500px;
+}
+.box1 {
+  height: 1000px;
+  width: 100px;
+  border: 1px solid black;
+  margin: 10px;
+  background-color: gray;
+}
 
 @media only screen and (max-width: 1000px) {
   .float-right {
