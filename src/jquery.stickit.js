@@ -1,7 +1,7 @@
 /**
  * [jQuery-stickit]{@link https://github.com/emn178/jquery-stickit}
  *
- * @version 0.2.2
+ * @version 0.2.3
  * @author Yi-Cyuan Chen [emn178@gmail.com]
  * @copyright Yi-Cyuan Chen 2014-2016
  * @license MIT
@@ -63,9 +63,15 @@
     this.options.className = this.options.className || 'stick';
     this.options.top = this.options.top || 0;
     this.options.extraHeight = this.options.extraHeight || 0;
+    if (this.options.overflowScrolling === undefined) {
+      this.options.overflowScrolling = true;
+    }
+    var transform = this.element.css('transform');
     if (this.options.zIndex === undefined) {
       this.zIndex = this.element.css('z-index') || 100;
       if (this.zIndex == 'auto') {
+        this.zIndex = 100;
+      } else if (this.zIndex == '0' && transform != 'none') {
         this.zIndex = 100;
       }
     }
@@ -84,6 +90,14 @@
     this.spacer.insertAfter(this.element);
     if (this.element.parent().css('position') == 'static') {
       this.element.parent().css('position', 'relative');
+    }
+    if (this.element.css('will-change') == 'auto') {
+      this.element.css('will-change', 'transform');
+    }
+    if (transform == 'none') {
+      this.element.css('transform', 'translateZ(0)');
+    } else if (transform.indexOf('matrix3d') == -1) {
+      this.element.css('transform', this.element.css('transform') + ' translateZ(0)');
     }
     this.bound();
     this.precalculate();
@@ -179,7 +193,7 @@
   };
 
   Sticker.prototype.updateScroll = function (newY) {
-    if (this.offsetHeight == 0) {
+    if (this.offsetHeight == 0 || !this.options.overflowScrolling) {
       return;
     }
     this.offsetY = Math.max(this.offsetY + newY - this.lastY, -(this.options.top + this.offsetHeight));
@@ -296,11 +310,11 @@
     });
   }
 
-  var scroll = throttle(function () {
+  var scroll = function () {
     $(SELECTOR).each(function () {
       $(this).data(KEY).locate();
     });
-  });
+  };
 
   var PublicMethods = ['destroy'];
   $.fn.stickit = function (method, options) {
@@ -324,7 +338,7 @@
         });
 
         if (MUTATION) {
-          var observer = new MutationObserver(scroll);
+          var observer = new MutationObserver(throttle(scroll));
           observer.observe(document, { 
             attributes: true, 
             childList: true, 

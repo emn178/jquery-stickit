@@ -54,6 +54,10 @@ Sets min width for RWD. This is equal to min-width in media query.
 
 Sets max width for RWD. This is equal to max-width in media query.
 
+#### *overflowScrolling: boolean (default: `true`)*
+
+Sets true to enable scrolling sticky element when its height is higher than the screen.
+
 ### Methods
 
 #### destroy()

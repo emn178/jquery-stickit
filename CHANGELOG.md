@@ -1,3 +1,8 @@
+# v0.2.3 / 2016-03-17
+
+* Added overflowScrolling option.
+* Improved scrolling effect in chrome and mobile browsers.
+
 # v0.2.2 / 2016-02-24
 
 * Added mutation observer feature.

@@ -8,6 +8,10 @@ body, html, h1, h2 {
   background-color: #2d2d2d;
   color: white;
   text-align: center;
+  -webkit-transform: translate(0,0);
+  -ms-transform: translate(0,0);
+  -o-transform: translate(0,0);
+  transform: translate(0,0);
 }
 
 #description {
@@ -19,9 +23,9 @@ body, html, h1, h2 {
 #navbar {
   background-color: #e7e7e7;
   color: white;
-  -webkit-transition: all 1s;
-  -o-transition: all 1s;
-  transition: all 1s;
+  -webkit-transition: background-color 1s;
+  -o-transition: background-color 1s;
+  transition: background-color 1s;
 }
 
 .nav {
