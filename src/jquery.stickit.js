@@ -1,9 +1,9 @@
 /**
  * [jQuery-stickit]{@link https://github.com/emn178/jquery-stickit}
  *
- * @version 0.2.3
- * @author Yi-Cyuan Chen [emn178@gmail.com]
- * @copyright Yi-Cyuan Chen 2014-2016
+ * @version 0.2.4
+ * @author Chen, Yi-Cyuan [emn178@gmail.com]
+ * @copyright Chen, Yi-Cyuan 2014-2016
  * @license MIT
  */
 (function ($, window, document) {
@@ -56,25 +56,32 @@
     return !!$(element).data(KEY);
   };
 
-  function Sticker(element, options) {
+  function Sticker(element, optionList) {
     this.element = $(element);
-    this.options = options || {};
-    this.options.scope = this.options.scope || Scope.Parent;
-    this.options.className = this.options.className || 'stick';
-    this.options.top = this.options.top || 0;
-    this.options.extraHeight = this.options.extraHeight || 0;
-    if (this.options.overflowScrolling === undefined) {
-      this.options.overflowScrolling = true;
+    if (!$.isArray(optionList)) {
+      optionList = [optionList];
+    }
+    this.optionList = optionList;
+    for (var i = 0;i < optionList.length;++i) {
+      var options = optionList[i] || {};
+      options.scope = options.scope || Scope.Parent;
+      options.className = options.className || 'stick';
+      options.top = options.top || 0;
+      options.extraHeight = options.extraHeight || 0;
+      if (options.overflowScrolling === undefined) {
+        options.overflowScrolling = true;
+      }
+      optionList[i] = options;
     }
     var transform = this.element.css('transform');
-    if (this.options.zIndex === undefined) {
-      this.zIndex = this.element.css('z-index') || 100;
-      if (this.zIndex == 'auto') {
-        this.zIndex = 100;
-      } else if (this.zIndex == '0' && transform != 'none') {
-        this.zIndex = 100;
-      }
+    this.defaultZIndex = this.element.css('z-index') || 100;
+    if (this.defaultZIndex == 'auto') {
+      this.defaultZIndex = 100;
+    } else if (this.defaultZIndex == '0' && transform != 'none') {
+      this.defaultZIndex = 100;
     }
+    this.updateOptions();
+
     this.offsetY = 0;
     this.lastY = 0;
     this.stick = Stick.None;
@@ -103,6 +110,82 @@
     this.precalculate();
     this.store();
   }
+
+  Sticker.prototype.trigger = function (eventName) {
+    var name = 'on' + eventName.charAt(0).toUpperCase() + eventName.slice(1);
+    if (this.options[name]) {
+      this.options[name].call(this.element);
+    }
+    this.element.trigger('stickit:' + eventName);
+  };
+
+  Sticker.prototype.isActive = function (options) {
+    return (options.screenMinWidth === undefined || screenWidth >= options.screenMinWidth) &&
+      (options.screenMaxWidth === undefined || screenWidth <= options.screenMaxWidth);
+  };
+
+  Sticker.prototype.updateCss = function (options) {
+    if (this.element.hasClass(this.options.className) && options.className != this.options.className) {
+      this.element.removeClass(this.options.className).addClass(options.className);
+    }
+    var update = {};
+    if (this.stick == Stick.Absolute) {
+      if (this.options.extraHeight != options.extraHeight) {
+        update.bottom = -this.options.extraHeight + 'px';
+      }
+    } else {
+      if (this.options.top != options.top) {
+        update.top = (options.top + this.offsetY) + 'px';
+      }
+    }
+    if (this.options.zIndex != options.zIndex) {
+      update.zIndex = this.getZIndex(options);
+    }
+    this.element.css(update);
+  };
+
+  Sticker.prototype.updateOptions = function () {
+    var activeKey = this.getActiveOptionsKey();
+    if (this.activeKey == activeKey) {
+      return;
+    }
+    this.activeKey = activeKey;
+    var options = this.getActiveOptions();
+    if (this.options) {
+      if (!activeKey) {
+        this.reset();
+      } else if (this.stick != Stick.None) {
+        this.updateCss(options);
+      }
+    }
+    this.options = options;
+    this.zIndex = this.getZIndex(options);
+  };
+
+  Sticker.prototype.getZIndex = function (options) {
+    return options.zIndex === undefined ? this.defaultZIndex : options.zIndex;
+  };
+
+  Sticker.prototype.getActiveOptionsKey = function () {
+    var indices = [];
+    for (var i = 0;i < this.optionList.length;++i) {
+      if (this.isActive(this.optionList[i])) {
+        indices.push(i);
+      }
+    }
+    return indices.join('_');
+  };
+
+  Sticker.prototype.getActiveOptions = function () {
+    var options = {};
+    for (var i = 0;i < this.optionList.length;++i) {
+      var opt = this.optionList[i];
+      if (this.isActive(opt)) {
+        $.extend(options, opt);
+      }
+    }
+    return options;
+  };
 
   Sticker.prototype.store = function () {
     var element = this.element[0];
@@ -153,6 +236,12 @@
   };
 
   Sticker.prototype.reset = function () {
+    if (this.stick == Stick.Absolute) {
+      this.trigger('unend');
+      this.trigger('unstick');
+    } else if (this.stick == Stick.Fixed) {
+      this.trigger('unstick');
+    }
     this.stick = Stick.None;
     this.spacer.hide();
     this.spacer.css('width', '');
@@ -163,6 +252,10 @@
   Sticker.prototype.setAbsolute = function (left) {
     if (this.stick == Stick.None) {
       this.element.addClass(this.options.className);
+      this.trigger('stick');
+      this.trigger('end');
+    } else {
+      this.trigger('end');
     }
     this.stick = Stick.Absolute;
     this.element.css({
@@ -178,6 +271,9 @@
   Sticker.prototype.setFixed = function (left, lastY, offsetY) {
     if (this.stick == Stick.None) {
       this.element.addClass(this.options.className);
+      this.trigger('stick');
+    } else {
+      this.trigger('unend');
     }
     this.stick = Stick.Fixed;
     this.lastY = lastY;
@@ -202,20 +298,11 @@
     this.element.css('top', (this.options.top + this.offsetY) + 'px');
   };
 
-  Sticker.prototype.isActive = function () {
-    return (this.options.screenMinWidth === undefined || screenWidth >= this.options.screenMinWidth) &&
-      (this.options.screenMaxWidth === undefined || screenWidth <= this.options.screenMaxWidth) &&
-      this.element.is(':visible');
-  };
-
   Sticker.prototype.locate = function () {
-    var rect, top, left, element = this.element, spacer = this.spacer;
-    if (!this.isActive()) {
-      if (this.stick != Stick.None) {
-        this.reset();
-      }
+    if (!this.activeKey) {
       return;
     }
+    var rect, top, left, element = this.element, spacer = this.spacer;
     switch (this.stick) {
       case Stick.Fixed:
         rect = spacer[0].getBoundingClientRect();
@@ -277,6 +364,7 @@
   };
 
   Sticker.prototype.resize = function () {
+    this.updateOptions();
     this.bound();
     this.precalculate();
     if (this.stick == Stick.None) {
@@ -348,7 +436,11 @@
         }
       }
 
-      options = method;
+      if ($.isArray(method)) {
+        options = method;
+      } else {
+        options = Array.prototype.splice.call(arguments, 0);
+      }
       this.each(function () {
         var sticker = new Sticker(this, options);
         $(this).data(KEY, sticker);

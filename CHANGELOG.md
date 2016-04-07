@@ -1,3 +1,9 @@
+# v0.2.4 / 2016-04-07
+
+* Added responsive feature.
+* Added callback events.
+* Fixed zIndex bug.
+
 # v0.2.3 / 2016-03-17
 
 * Added overflowScrolling option.

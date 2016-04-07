@@ -58,6 +58,22 @@ Sets max width for RWD. This is equal to max-width in media query.
 
 Sets true to enable scrolling sticky element when its height is higher than the screen.
 
+#### *onStick: function (default: `undefined`)*
+
+Callback event when the element becomes stuck. Or `stickit:stick` event.
+
+#### *onUnstick: function (default: `undefined`)*
+
+Callback event when the element becomes unstuck. Or `stickit:unstick` event.
+
+#### *onEnd: function (default: `undefined`)*
+
+Callback event when the element arrives at the end of container. Or `stickit:end` event.
+
+#### *onUnend: function (default: `undefined`)*
+
+Callback event when the element leaves from the end of container. Or `stickit:unend` event.
+
 ### Methods
 
 #### destroy()
@@ -65,23 +81,74 @@ Sets true to enable scrolling sticky element when its height is higher than the 
 Removes the stickit functionality completely. 
 
 ## Example
-Code
 ```JavaScript
+// use default settings
+$('.stickit').stickit();
+
+// or assign settings
+$('.stickit').stickit({top: 43});
+
+// callback events
 $('.stickit').stickit({
-  // Sets the element stick in the parent element or entire document.
-  scope: StickScope.Parent,
-
-  // Sets the class name to the element when it's stick.
-  className: 'stick',
-
-  // Sets sticky top, eg. it will be stuck at position top 50 if you set 50.
-  top: 0,
-
-  // Sets extra height for parent element, it could be used only StickScope.Parent. When the contents of parent has margin or something let the actual height out of container, you could use this options to fix.
-  extraHeight: 0
+  onStick: function () {
+    // do something
+  }
+});
+// equal to
+$('.stickit').stickit().bind('stickit:stick', function () {
+  // do something
 });
 
+// call pre-defined methods
 $('.stickit').stickit('destroy');
+```
+
+## Responsive
+You can set up multiple options with different min-width and max-width.
+```JavaScript
+$('.stickit').stickit({
+  screenMinWidth: 1025    // apply if width >= 1025
+}, {
+  screenMinWidth: 769,    // apply if width >= 769 && width <= 1024
+  screenMaxWidth: 1024,
+  top: 10
+}, {
+  screenMaxWidth: 768,    // apply if width <= 768
+  top: 20
+});
+// array is also fine, equal to
+$('.stickit').stickit([{
+  screenMinWidth: 1025    // apply if width >= 1025
+}, {
+  screenMinWidth: 769,    // apply if width >= 769 && width <= 1024
+  screenMaxWidth: 1024,
+  top: 10
+}, {
+  screenMaxWidth: 768,    // apply if width <= 768
+  top: 20
+}]);
+```
+If multiple settings match, it will merge and overwrite the setting like css. Eg.
+```JavaScript
+$('.stickit').stickit({
+  top: 10,                 // always match
+  extraHeight: 10
+}, {
+  screenMaxWidth: 768,     // apply if width <= 768
+  top: 20,
+  zIndex: 10
+});
+// In this case, the settings will be following if width > 768
+{
+  top: 10,
+  extraHeight: 10
+}
+// the settings will be following if width <= 768
+{
+  top: 20,
+  extraHeight: 10,
+  zIndex: 10
+}
 ```
 
 ## License
@@ -89,4 +156,4 @@ The project is released under the [MIT license](http://www.opensource.org/licens
 
 ## Contact
 The project's website is located at https://github.com/emn178/jquery-stickit  
-Author: Yi-Cyuan Chen (emn178@gmail.com)
+Author: Chen, Yi-Cyuan (emn178@gmail.com)
