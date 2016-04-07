@@ -107,24 +107,24 @@ $('.stickit').stickit('destroy');
 You can set up multiple options with different min-width and max-width.
 ```JavaScript
 $('.stickit').stickit({
-  screenMinWidth: 1025    // apply if width >= 1025
+  screenMinWidth: 1024    // apply if width >= 1024
 }, {
-  screenMinWidth: 769,    // apply if width >= 769 && width <= 1024
-  screenMaxWidth: 1024,
+  screenMinWidth: 768,    // apply if width >= 768 && width <= 1023
+  screenMaxWidth: 1023,
   top: 10
 }, {
-  screenMaxWidth: 768,    // apply if width <= 768
+  screenMaxWidth: 767,    // apply if width <= 767
   top: 20
 });
 // array is also fine, equal to
 $('.stickit').stickit([{
-  screenMinWidth: 1025    // apply if width >= 1025
+  screenMinWidth: 1024    // apply if width >= 1024
 }, {
-  screenMinWidth: 769,    // apply if width >= 769 && width <= 1024
-  screenMaxWidth: 1024,
+  screenMinWidth: 768,    // apply if width >= 768 && width <= 1023
+  screenMaxWidth: 1023,
   top: 10
 }, {
-  screenMaxWidth: 768,    // apply if width <= 768
+  screenMaxWidth: 767,    // apply if width <= 767
   top: 20
 }]);
 ```
@@ -134,16 +134,16 @@ $('.stickit').stickit({
   top: 10,                 // always match
   extraHeight: 10
 }, {
-  screenMaxWidth: 768,     // apply if width <= 768
+  screenMaxWidth: 767,     // apply if width <= 767
   top: 20,
   zIndex: 10
 });
-// In this case, the settings will be following if width > 768
+// In this case, the settings will be following if width > 767
 {
   top: 10,
   extraHeight: 10
 }
-// the settings will be following if width <= 768
+// the settings will be following if width <= 767
 {
   top: 20,
   extraHeight: 10,
