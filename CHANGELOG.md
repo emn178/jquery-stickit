@@ -1,3 +1,8 @@
+# v0.2.5 / 2016-05-10
+
+* Added !important to spacer.
+* Fixed bugs in IE browsers.
+
 # v0.2.4 / 2016-04-07
 
 * Added responsive feature.

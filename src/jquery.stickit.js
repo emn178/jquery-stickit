@@ -1,7 +1,7 @@
 /**
  * [jQuery-stickit]{@link https://github.com/emn178/jquery-stickit}
  *
- * @version 0.2.4
+ * @version 0.2.5
  * @author Chen, Yi-Cyuan [emn178@gmail.com]
  * @copyright Chen, Yi-Cyuan 2014-2016
  * @license MIT
@@ -73,7 +73,7 @@
       }
       optionList[i] = options;
     }
-    var transform = this.element.css('transform');
+    var transform = this.element.css('transform') || '';
     this.defaultZIndex = this.element.css('z-index') || 100;
     if (this.defaultZIndex == 'auto') {
       this.defaultZIndex = 100;
@@ -90,10 +90,7 @@
     this.spacer[0].className = element.className;
     this.spacer[0].style.cssText = element.style.cssText;
     this.spacer.addClass(SPACER_KEY);
-    this.spacer.css({
-      display: 'none',
-      visibility: 'hidden'
-    });
+    this.spacer[0].style.cssText += ';visibility: hidden !important;display: none !important';
     this.spacer.insertAfter(this.element);
     if (this.element.parent().css('position') == 'static') {
       this.element.parent().css('position', 'relative');
@@ -243,8 +240,8 @@
       this.trigger('unstick');
     }
     this.stick = Stick.None;
-    this.spacer.hide();
-    this.spacer.css('width', '');
+    this.spacer.css('width', '');    
+    this.spacer[0].style.cssText += ';display: none !important';
     this.restore();
     this.element.removeClass(this.options.className);
   };
@@ -439,7 +436,7 @@
       if ($.isArray(method)) {
         options = method;
       } else {
-        options = Array.prototype.splice.call(arguments, 0);
+        options = Array.prototype.slice.call(arguments, 0);
       }
       this.each(function () {
         var sticker = new Sticker(this, options);
