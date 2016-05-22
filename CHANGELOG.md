@@ -1,3 +1,7 @@
+# v0.2.6 / 2016-05-22
+
+* Fixed responsive bugs.
+
 # v0.2.5 / 2016-05-10
 
 * Added !important to spacer.

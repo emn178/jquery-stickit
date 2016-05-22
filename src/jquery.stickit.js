@@ -1,7 +1,7 @@
 /**
  * [jQuery-stickit]{@link https://github.com/emn178/jquery-stickit}
  *
- * @version 0.2.5
+ * @version 0.2.6
  * @author Chen, Yi-Cyuan [emn178@gmail.com]
  * @copyright Chen, Yi-Cyuan 2014-2016
  * @license MIT
@@ -59,20 +59,12 @@
   function Sticker(element, optionList) {
     this.element = $(element);
     if (!$.isArray(optionList)) {
-      optionList = [optionList];
+      optionList = [optionList || {}];
+    }
+    if (!optionList.length) {
+      optionList.push({});
     }
     this.optionList = optionList;
-    for (var i = 0;i < optionList.length;++i) {
-      var options = optionList[i] || {};
-      options.scope = options.scope || Scope.Parent;
-      options.className = options.className || 'stick';
-      options.top = options.top || 0;
-      options.extraHeight = options.extraHeight || 0;
-      if (options.overflowScrolling === undefined) {
-        options.overflowScrolling = true;
-      }
-      optionList[i] = options;
-    }
     var transform = this.element.css('transform') || '';
     this.defaultZIndex = this.element.css('z-index') || 100;
     if (this.defaultZIndex == 'auto') {
@@ -152,7 +144,12 @@
       if (!activeKey) {
         this.reset();
       } else if (this.stick != Stick.None) {
-        this.updateCss(options);
+        if (options.scope == this.options.scope) {
+          this.updateCss(options);
+        } else {
+          this.reset();
+          setTimeout(this.locate.bind(this));
+        }
       }
     }
     this.options = options;
@@ -180,6 +177,13 @@
       if (this.isActive(opt)) {
         $.extend(options, opt);
       }
+    }
+    options.scope = options.scope || Scope.Parent;
+    options.className = options.className || 'stick';
+    options.top = options.top || 0;
+    options.extraHeight = options.extraHeight || 0;
+    if (options.overflowScrolling === undefined) {
+      options.overflowScrolling = true;
     }
     return options;
   };
