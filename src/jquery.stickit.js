@@ -87,9 +87,6 @@
     if (this.element.parent().css('position') == 'static') {
       this.element.parent().css('position', 'relative');
     }
-    if (this.element.css('will-change') == 'auto') {
-      this.element.css('will-change', 'transform');
-    }
     if (transform == 'none') {
       this.element.css('transform', 'translateZ(0)');
     } else if (transform.indexOf('matrix3d') == -1) {
