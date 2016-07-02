@@ -1,7 +1,7 @@
 /**
  * [jQuery-stickit]{@link https://github.com/emn178/jquery-stickit}
  *
- * @version 0.2.6
+ * @version 0.2.7
  * @author Chen, Yi-Cyuan [emn178@gmail.com]
  * @copyright Chen, Yi-Cyuan 2014-2016
  * @license MIT
@@ -15,6 +15,7 @@
   var MUTATION = window.MutationObserver !== undefined;
   var animationend = 'animationend webkitAnimationEnd oAnimationEnd';
   var transitionend = 'transitionend webkitTransitionEnd oTransitionEnd';
+  var fullscreenchange = 'webkitfullscreenchange mozfullscreenchange fullscreenchange MSFullscreenChange';
 
   var Scope = window.StickScope = {
     Parent: 0,
@@ -87,7 +88,8 @@
     if (this.element.parent().css('position') == 'static') {
       this.element.parent().css('position', 'relative');
     }
-    if (this.element.css('will-change') == 'auto') {
+    this.origWillChange = this.element.css('will-change');
+    if (this.origWillChange == 'auto') {
       this.element.css('will-change', 'transform');
     }
     if (transform == 'none') {
@@ -364,7 +366,7 @@
     }
   };
 
-  Sticker.prototype.resize = function () {
+  Sticker.prototype.refresh = function () {
     this.updateOptions();
     this.bound();
     this.precalculate();
@@ -390,22 +392,40 @@
     this.element.removeData(KEY);
   };
 
+  Sticker.prototype.enableWillChange = function (enabled) {
+    if (this.origWillChange != 'auto') {
+      return;
+    }
+    this.element.css('will-change', enabled ? 'transform' : this.origWillChange);
+  };
+
   var screenHeight, screenWidth;
   function resize() {
     screenHeight = window.innerHeight || document.documentElement.clientHeight;
     screenWidth = window.innerWidth || document.documentElement.clientWidth;
+    refresh();
+  }
+
+  function refresh() {
     $(SELECTOR).each(function () {
-      $(this).data(KEY).resize();
+      $(this).data(KEY).refresh();
     });
   }
 
-  var scroll = function () {
+  function scroll() {
     $(SELECTOR).each(function () {
       $(this).data(KEY).locate();
     });
   };
 
-  var PublicMethods = ['destroy'];
+  function onFullscreenChange() {
+    var fullscreen = !!(document.fullscreenElement || document.mozFullScreenElement || document.webkitFullscreenElement || document.msFullscreenElement);
+    $(SELECTOR).each(function () {
+      $(this).data(KEY).enableWillChange(!fullscreen);
+    });
+  }
+
+  var PublicMethods = ['destroy', 'refresh'];
   $.fn.stickit = function (method, options) {
     // init
     if (typeof(method) == 'string') {
@@ -423,11 +443,12 @@
         resize();
         $(document).ready(function () {
           $(window).bind('resize', resize).bind('scroll', scroll);
-          $(document.body).on(animationend + ' ' + transitionend, scroll);
+          $(document.body).bind(animationend + ' ' + transitionend, scroll);
+          $(document).bind(fullscreenchange, onFullscreenChange);
         });
 
         if (MUTATION) {
-          var observer = new MutationObserver(throttle(scroll));
+          var observer = new MutationObserver(throttle(refresh));
           observer.observe(document, { 
             attributes: true, 
             childList: true, 
@@ -449,5 +470,9 @@
       });
     }
     return this;
+  };
+
+  $.stickit = {
+    refresh: refresh
   };
 })(jQuery, window, document);

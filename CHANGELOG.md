@@ -1,3 +1,8 @@
+# v0.2.7 / 2016-07-02
+
+* Added refresh method, #19.
+* Fixed fullscreen bugs, #20, #22.
+
 # v0.2.6 / 2016-05-22
 
 * Fixed responsive bugs.

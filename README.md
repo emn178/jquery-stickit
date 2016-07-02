@@ -80,6 +80,14 @@ Callback event when the element leaves from the end of container. Or `stickit:un
 
 Removes the stickit functionality completely. 
 
+#### refresh()
+
+Refresh the position of stickit element manually. 
+
+#### $.stickit.refresh()
+
+Refresh the position of all stickit elements manually. 
+
 ## Example
 ```JavaScript
 // use default settings
@@ -101,6 +109,10 @@ $('.stickit').stickit().bind('stickit:stick', function () {
 
 // call pre-defined methods
 $('.stickit').stickit('destroy');
+$('.stickit').stickit('refresh');
+
+// refresh all
+$.stickit.refresh();
 ```
 
 ## Responsive
