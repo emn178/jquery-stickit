@@ -42,11 +42,15 @@ body, html, h1, h2 {
   border: 1px dashed #bdbdbd;
 }
 
-.add, .remove {
+.block a {
   display: block;
   height: 150px;
   line-height: 150px;
   text-align: center;
+  color: black;
+}
+
+.block .add, .block .remove {
   color: gray;
   cursor: pointer;
 }

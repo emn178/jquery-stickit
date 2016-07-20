@@ -41,7 +41,7 @@
     </div>
     <hr />
     <div id="container">
-      <div class="column a">
+      <div class="column">
         <div class="block">
           <a class="remove">Remove</a>
         </div>
@@ -60,17 +60,6 @@
         <div class="block">
           <a class="remove">Remove</a>
         </div>
-        <div class="block">
-          <a class="remove">Remove</a>
-        </div>
-        <div class="block">
-          <a class="remove">Remove</a>
-        </div>
-        <div class="block">
-          <a class="add">Add</a>
-        </div>
-      </div>
-      <div class="column a">
         <div class="block">
           <a class="remove">Remove</a>
         </div>
@@ -84,7 +73,36 @@
           <a class="add">Add</a>
         </div>
       </div>
-      <div class="column b">
+      <div class="column">
+        <div class="block">
+          <a class="add">Add</a>
+        </div>
+      </div>
+      <div class="column">
+        <div class="block">
+          <a class="remove">Remove</a>
+        </div>
+        <div class="block">
+          <a class="remove">Remove</a>
+        </div>
+        <div class="block">
+          <a class="remove">Remove</a>
+        </div>
+        <div class="block">
+          <a class="remove">Remove</a>
+        </div>
+        <div class="block">
+          <a class="remove">Remove</a>
+        </div>
+        <div class="block">
+          <a class="remove">Remove</a>
+        </div>
+        <div class="block">
+          <a class="remove">Remove</a>
+        </div>
+        <div class="block">
+          <a class="remove">Remove</a>
+        </div>
         <div class="block">
           <a class="add">Add</a>
         </div>
@@ -96,8 +114,7 @@
   </div>
   <script>
     var columns = $('.column');
-    $('.column.a').stickit();
-    $('.column.b').stickit({overflowScrolling: false});
+    $('.column').stickit();
     $('.add').click(function () {
       $(this).closest('.column').prepend('<div class="block"><a class="remove">Remove</a></div>');
     });
