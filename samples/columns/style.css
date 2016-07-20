@@ -1,0 +1,80 @@
+body, html, h1, h2 {
+  margin: 0;
+  padding: 0;
+  font-family: 'Roboto Slab', serif;
+}
+
+#header, #sidebar-header, .section-title, .references-title {
+  background-color: #2d2d2d;
+  color: white;
+  text-align: center;
+}
+
+#description {
+  margin: 20px;
+  text-align: center;
+  font-size: 20px;
+}
+
+#container {
+  margin: 0 auto;
+  overflow: auto;
+  width: 80%;
+  clear: both;
+  background-color: #dcdcdc;
+}
+
+#container:after {
+  content: '';
+  display: table;
+}
+
+.column {
+  float: left;
+  width: 33.33%;
+  border: 1px solid #a5a5a5;
+  box-sizing: border-box;
+}
+
+.block {
+  height: 150px;
+  background-color: #e1e6ec;
+  border: 1px dashed #bdbdbd;
+}
+
+.add, .remove {
+  display: block;
+  height: 150px;
+  line-height: 150px;
+  text-align: center;
+  color: gray;
+  cursor: pointer;
+}
+
+.add:hover, .remove:hover {
+  color: #a7a6a6;
+}
+
+.column.stick .block {
+  background-color: #e1e6e0;
+}
+
+#footer {
+  margin-top: 40px;
+  padding-top: 40px;
+  padding-bottom: 40px;
+  font-size: 12px;
+  line-height: 1.5;
+  color: #777;
+  border-top: 1px solid #eee;
+  text-align: center;
+}
+
+#code-block {
+  margin: 10px auto;
+  width: 80%;
+}
+
+#code-block h3 {
+  text-align: center;
+}

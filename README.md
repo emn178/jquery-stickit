@@ -4,7 +4,9 @@ A jQuery plugin provides a sticky header, sidebar or else when scrolling.
 ## Demo
 [Sidebar](https://emn178.github.io/jquery-stickit/samples/sidebar/)  
 [Header](https://emn178.github.io/jquery-stickit/samples/header/)  
-[Navbar](https://emn178.github.io/jquery-stickit/samples/navbar/)
+[Navbar](https://emn178.github.io/jquery-stickit/samples/navbar/)  
+[Stack Pages](https://emn178.github.io/jquery-stickit/samples/stack/)  
+[Sticky Columns](https://emn178.github.io/jquery-stickit/samples/columns/)
 
 ## Download
 [Compress](https://raw.github.com/emn178/jquery-stickit/master/build/jquery.stickit.min.js)  

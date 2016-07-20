@@ -1,7 +1,7 @@
 /**
  * [jQuery-stickit]{@link https://github.com/emn178/jquery-stickit}
  *
- * @version 0.2.7
+ * @version 0.2.8
  * @author Chen, Yi-Cyuan [emn178@gmail.com]
  * @copyright Chen, Yi-Cyuan 2014-2016
  * @license MIT
@@ -301,6 +301,10 @@
     this.element.css('top', (this.options.top + this.offsetY) + 'px');
   };
 
+  Sticker.prototype.isHigher = function () {
+    return this.options.scope == Scope.Parent && this.element.parent().height() <= this.element.outerHeight(false) + this.basePadding;
+  };
+
   Sticker.prototype.locate = function () {
     if (!this.activeKey) {
       return;
@@ -310,7 +314,7 @@
       case Stick.Fixed:
         rect = spacer[0].getBoundingClientRect();
         top = rect.top - this.baseTop;
-        if (top >= 0) {
+        if (top >= 0 || this.isHigher()) {
           this.reset();
         } else if (this.options.scope == Scope.Parent) {
           rect = element.parent()[0].getBoundingClientRect();
@@ -327,7 +331,7 @@
         rect = spacer[0].getBoundingClientRect();
         top = rect.top - this.baseTop;
         left = rect.left - this.margin.left;
-        if (top >= 0) {
+        if (top >= 0 || this.isHigher()) {
           this.reset();
         } else {
           rect = element.parent()[0].getBoundingClientRect();
@@ -341,7 +345,7 @@
       default:
         rect = element[0].getBoundingClientRect();
         top = rect.top - this.baseTop;
-        if (top >= 0) {
+        if (top >= 0 || this.isHigher()) {
           return;
         }
 

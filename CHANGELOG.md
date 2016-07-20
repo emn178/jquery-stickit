@@ -1,3 +1,7 @@
+# v0.2.8 / 2016-07-20
+
+* Fixed element higher than parent issue, and this can support #18.
+
 # v0.2.7 / 2016-07-02
 
 * Added refresh method, #19.
