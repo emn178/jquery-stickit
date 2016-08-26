@@ -1,3 +1,7 @@
+# v0.2.9 / 2016-08-26
+
+* Fixed mutation observer event loop from other conflict libraries.
+
 # v0.2.8 / 2016-07-20
 
 * Fixed element higher than parent issue, and this can support #18.

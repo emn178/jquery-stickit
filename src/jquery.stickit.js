@@ -1,7 +1,7 @@
 /**
  * [jQuery-stickit]{@link https://github.com/emn178/jquery-stickit}
  *
- * @version 0.2.8
+ * @version 0.2.9
  * @author Chen, Yi-Cyuan [emn178@gmail.com]
  * @copyright Chen, Yi-Cyuan 2014-2016
  * @license MIT
@@ -59,6 +59,7 @@
 
   function Sticker(element, optionList) {
     this.element = $(element);
+    this.lastValues = {};
     if (!$.isArray(optionList)) {
       optionList = [optionList || {}];
     }
@@ -380,12 +381,18 @@
     }
     var element = this.element;
     var spacer = this.spacer;
-    element.width(spacer.width());
-    spacer.height(element.height());
+    if (this.lastValues.width != spacer.width()) {
+      element.width(this.lastValues.width = spacer.width());
+    }
+    if (this.lastValues.height != spacer.height()) {
+      spacer.height(this.lastValues.height = spacer.height());
+    }
     if (this.stick == Stick.Fixed) {
       var rect = this.spacer[0].getBoundingClientRect();
       var left = rect.left - this.margin.left;
-      element.css('left', left + 'px');
+      if (this.lastValues.left != left + 'px') {
+        element.css('left', this.lastValues.left = left + 'px');
+      }
     }
     this.locate();
   };
