@@ -1,5 +1,9 @@
 # Change Log
 
+## v0.2.11 / 2016-12-21
+### Fixed
+- incorrect computation when element set float and percent width. #26
+
 ## v0.2.10 / 2016-12-19
 ### Fixed
 - spacer size incorrect if value is float.

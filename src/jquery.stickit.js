@@ -1,7 +1,7 @@
 /**
  * [jQuery-stickit]{@link https://github.com/emn178/jquery-stickit}
  *
- * @version 0.2.10
+ * @version 0.2.11
  * @author Chen, Yi-Cyuan [emn178@gmail.com]
  * @copyright Chen, Yi-Cyuan 2014-2016
  * @license MIT
@@ -249,7 +249,7 @@
       this.trigger('unstick');
     }
     this.stick = Stick.None;
-    this.spacer.css('width', '');    
+    this.spacer.css('width', this.origStyle.width);
     this.spacer[0].style.cssText += ';display: none !important';
     this.restore();
     this.element.removeClass(this.options.className);
