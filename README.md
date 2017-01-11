@@ -17,10 +17,6 @@ You can also install jquery-stickit by using Bower.
 
     bower install jquery-stickit
 
-Or you can use this command to install:
-
-    npm install jquery-stickit
-
 ## Usage
 ```JavaScript
 $('#you-want-stick').stickit(options);
