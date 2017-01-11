@@ -1,0 +1,23 @@
+{
+  "name": "jquery-stickit",
+  "version": "0.2.12",
+  "description": "A jQuery plugin provides a sticky header, sidebar or else when scrolling.",
+  "main": "src/jquery-stickit.js",
+  "dependencies": {
+    "jquery": ">=1.6"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/emn178/Chart.Crosshairs.js.git"
+  },
+  "keywords": [
+    "sticky",
+    "jQuery"
+  ],
+  "license": "MIT",
+  "author": "Chen, Yi-Cyuan <emn178@gmail.com>",
+  "homepage": "https://github.com/emn178/Chart.Crosshairs.js",
+  "bugs": {
+    "url": "https://github.com/emn178/Chart.Crosshairs.js/issues"
+  }
+}

@@ -14,9 +14,12 @@ A jQuery plugin provides a sticky header, sidebar or else when scrolling.
 
 ## Installation
 You can also install jquery-stickit by using Bower.
-```
-bower install jquery-stickit
-```
+
+    bower install jquery-stickit
+
+Or you can use this command to install:
+
+    npm install jquery-stickit
 
 ## Usage
 ```JavaScript

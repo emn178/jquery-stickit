@@ -1,5 +1,9 @@
 # Change Log
 
+## v0.2.12 / 2017-01-11
+### Fixed
+- incorrect size when refresh or resize.
+
 ## v0.2.11 / 2016-12-21
 ### Fixed
 - incorrect computation when element set float and percent width. #26
