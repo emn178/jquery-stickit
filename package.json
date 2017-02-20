@@ -1,6 +1,6 @@
 {
   "name": "jquery-stickit",
-  "version": "0.2.12",
+  "version": "0.2.13",
   "description": "A jQuery plugin provides a sticky header, sidebar or else when scrolling.",
   "main": "src/jquery.stickit.js",
   "dependencies": {

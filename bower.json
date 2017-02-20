@@ -1,6 +1,6 @@
 {
   "name": "jquery-stickit",
-  "version": "0.2.12",
+  "version": "0.2.13",
   "main": ["src/jquery.stickit.js"],
   "ignore": [
     "samples",

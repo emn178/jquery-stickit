@@ -1,7 +1,7 @@
 /**
  * [jQuery-stickit]{@link https://github.com/emn178/jquery-stickit}
  *
- * @version 0.2.12
+ * @version 0.2.13
  * @author Chen, Yi-Cyuan [emn178@gmail.com]
  * @copyright Chen, Yi-Cyuan 2014-2017
  * @license MIT
@@ -360,8 +360,24 @@
     this.updateOptions();
     this.bound();
     this.precalculate();
-    if (this.stick !== Stick.None) {
-      this.reset();
+    if (this.stick == Stick.None) {
+      this.locate();
+      return;
+    }
+    var element = this.element;
+    var spacer = this.spacer;
+    if (this.lastValues.width != spacer.width()) {
+      element.width(this.lastValues.width = spacer.width());
+    }
+    if (this.lastValues.height != element.height()) {
+      spacer.height(this.lastValues.height = element.height());
+    }
+    if (this.stick == Stick.Fixed) {
+      var rect = this.spacer[0].getBoundingClientRect();
+      var left = rect.left - this.margin.left;
+      if (this.lastValues.left != left + 'px') {
+        element.css('left', this.lastValues.left = left + 'px');
+      }
     }
     this.locate();
   };

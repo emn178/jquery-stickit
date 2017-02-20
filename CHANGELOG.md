@@ -1,5 +1,9 @@
 # Change Log
 
+## v0.2.13 / 2017-02-20
+### Fixed
+- refresh issue in chrome. #29
+
 ## v0.2.12 / 2017-01-11
 ### Fixed
 - incorrect size when refresh or resize.
