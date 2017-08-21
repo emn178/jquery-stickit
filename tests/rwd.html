@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+  <script src="https://code.jquery.com/jquery-1.10.1.min.js"></script>
+  <script type="text/javascript" src="../src/jquery.stickit.js"></script>
+  <style>
+  .list-of-tariffs {
+  background-color: gray;
+}
+.header {
+  height: 100px;
+  background-color: green;
+}
+.footer {
+  height: 3000px;
+  background-color: green;
+}
+.wrapper {
+  height: 300px;
+  background-color: blue;
+  
+}
+  </style>
+</head>
+<body>
+  <div class="header">
+  header
+  </div>
+  <div class="wrapper">
+  <div class="list-of-tariffs">
+  Test
+  </div>
+  </div>
+
+  <div class="footer">
+  footer
+  </div>
+  <script type="text/javascript">
+
+  $('.list-of-tariffs').stickit({
+        top: 40,
+        screenMinWidth: 544,
+        scope: StickScope.Document
+    }, {
+        top: 0,
+        screenMaxWidth: 768
+    });
+  </script>
+</body>
+</html>

@@ -1,7 +1,7 @@
 /**
  * [jQuery-stickit]{@link https://github.com/emn178/jquery-stickit}
  *
- * @version 0.2.13
+ * @version 0.2.14
  * @author Chen, Yi-Cyuan [emn178@gmail.com]
  * @copyright Chen, Yi-Cyuan 2014-2017
  * @license MIT
@@ -195,7 +195,7 @@
     } else {
       this.extraWidth = 0;
     }
-    
+
     this.margin = {
       top: parseFloat(element.css('margin-top')) || 0,
       bottom: parseFloat(element.css('margin-bottom')) || 0,
@@ -287,8 +287,8 @@
     this.element.css('top', (this.options.top + this.offsetY) + 'px');
   };
 
-  Sticker.prototype.isHigher = function () {
-    return this.options.scope == Scope.Parent && this.element.parent().height() <= this.element.outerHeight(false) + this.basePadding;
+  Sticker.prototype.isHeigher = function () {
+    return this.options.scope == Scope.Parent && this.element.parent().height() <= this.element.outerHeight(false) + this.margin.bottom;
   };
 
   Sticker.prototype.locate = function () {
@@ -300,7 +300,7 @@
       case Stick.Fixed:
         rect = spacer[0].getBoundingClientRect();
         top = rect.top - this.baseTop;
-        if (top >= 0 || this.isHigher()) {
+        if (top >= 0 || this.isHeigher()) {
           this.reset();
         } else if (this.options.scope == Scope.Parent) {
           rect = element.parent()[0].getBoundingClientRect();
@@ -317,7 +317,7 @@
         rect = spacer[0].getBoundingClientRect();
         top = rect.top - this.baseTop;
         left = rect.left - this.margin.left;
-        if (top >= 0 || this.isHigher()) {
+        if (top >= 0 || this.isHeigher()) {
           this.reset();
         } else {
           rect = element.parent()[0].getBoundingClientRect();
@@ -331,7 +331,7 @@
       default:
         rect = element[0].getBoundingClientRect();
         top = rect.top - this.baseTop;
-        if (top >= 0 || this.isHigher()) {
+        if (top >= 0 || this.isHeigher()) {
           return;
         }
 
@@ -348,7 +348,7 @@
             this.setFixed(left + OFFSET, rect.bottom, 0);
           }
         }
-        
+
         if (!spacer.width()) {
           spacer.width(element.width());
         }
@@ -460,9 +460,9 @@
 
         if (MUTATION) {
           var observer = new MutationObserver(mutationUpdate);
-          observer.observe(document, { 
-            attributes: true, 
-            childList: true, 
+          observer.observe(document, {
+            attributes: true,
+            childList: true,
             characterData: true,
             subtree: true
           });

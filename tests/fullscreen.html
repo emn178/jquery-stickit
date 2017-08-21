@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+  <script src="https://code.jquery.com/jquery-1.10.1.min.js"></script>
+  <script type="text/javascript" src="../src/jquery.stickit.js"></script>
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.pack.js"></script>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.css" rel="stylesheet" type="text/css" />
+  <style>
+  html, body {
+    margin: 0;
+    padding: 0;
+  }
+  .row:after {
+    content: '';
+    display: table;
+    clear: both;
+  }
+  .col {
+    float: left;
+    width: 25%;
+    height: 700px;
+    position: relative;
+    min-height: 1px;
+    padding-left: 10px;
+    padding-right: 10px;
+    box-sizing: border-box;
+  }
+  .header {
+    /*height: 100px;
+    background: green;*/
+    box-sizing: border-box;
+    font-size: 1.4rem;
+    line-height: 1.4286rem;
+    margin-top: 0;
+    font-family: Philosopher,sans-serif;
+    color: #f7e5cf;
+    font-weight: 700;
+    text-align: center;
+    position: relative;
+    text-shadow: 1px 1px 2px #000;
+    background: #6fad58;
+    display: block;
+    height: 5.7144rem;
+    margin-bottom: 3.5715rem;
+    text-decoration: underline;
+    padding: 1.4286rem 0;
+  }
+  .padding {
+    height: 200px;
+    background-color: gray;
+  }
+  </style>
+</head>
+<body>
+  <div class="row">
+    <div class="col">
+      <a class="header">Header</a>
+      <div class="padding"></div>
+      <a href="https://www.youtube.com/embed/M5aALyHNVws?rel=0&amp;showinfo=0&amp;autoplay=1" class="fancybox text-shadow " data-fancybox-type="iframe">
+        Смотреть видео-отзыв
+      </a>
+    </div>
+    <div class="col">
+      <a class="header">Header</a>
+      <div class="padding"></div>
+    </div>
+    <div class="col">
+      <a class="header">Header</a>
+      <div class="padding"></div>
+    </div>
+    <div class="col">
+      <a class="header">Header</a>
+      <div class="padding"></div>
+    </div>
+  </div>
+  <div class="stickit">
+    <iframe width="560" height="315" src="https://www.youtube.com/embed/WRf4WVdewzs" frameborder="0" allowfullscreen></iframe>
+  </div>
+  <div class="padding"></div>
+  <div class="padding"></div>
+  <div class="padding"></div>
+  <div class="padding"></div>
+  <script type="text/javascript">
+  $(document).ready(function() {
+    $('.stickit, .header').stickit();
+    $('.fancybox').fancybox();
+  });
+  </script>
+</body>
+</html>
+
+

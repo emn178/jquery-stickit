@@ -1,0 +1,24 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Sticky Columns</title>
+  <script src="https://code.jquery.com/jquery-1.10.1.min.js"></script>
+  <script type="text/javascript" src="../src/jquery.stickit.js"></script>
+<style>
+* {margin:0px; padding:0px;position:relative;vertical-align:top;}
+body {height: 2000px; padding-top: 300px; padding-bottom:300px;}
+.container {background-color:blue}
+.content {width:50%;padding-bottom:100%;display:inline-block;height: 0px;background-color:green;}
+.sidebar {width:50%;display:inline-block;height: 500px;background-color:red;}
+</style>
+
+</head>
+<body>
+
+<div class='container'><div class='content'>Content</div><div class='sidebar'>Sidebar</div></div>
+<script>
+    $('.sidebar').stickit({top: 200});
+</script>
+</body>
+</html>

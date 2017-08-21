@@ -1,5 +1,9 @@
 # Change Log
 
+## v0.2.14 / 2017-08-21
+### Fixed
+- #32 top problem.
+
 ## v0.2.13 / 2017-02-20
 ### Fixed
 - refresh issue in chrome. #29
